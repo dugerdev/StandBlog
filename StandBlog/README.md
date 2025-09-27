@@ -1,93 +1,93 @@
 ﻿# StandBlog
 
-Modern bir ASP.NET Core MVC blog uygulaması. Kullanıcıların blog yazıları oluşturabileceği, kategorilere ayırabileceği ve etiketleyebileceği tam özellikli bir blog platformu.
+A modern ASP.NET Core MVC blog application. A full-featured blog platform where users can create blog posts, categorize them, and tag them.
 
-## 🚀 Özellikler
+## 🚀 Features
 
-### Genel Özellikler
-- **Modern Blog Sistemi**: Kullanıcı dostu arayüz ile blog yazıları
-- **Kategori Yönetimi**: Blog yazılarını kategorilere ayırma
-- **Etiket Sistemi**: Blog yazılarını etiketlerle organize etme
-- **Yorum Sistemi**: Okuyucuların blog yazılarına yorum yapabilmesi
-- **İletişim Formu**: Ziyaretçilerin site sahibiyle iletişim kurabilmesi
-- **Responsive Tasarım**: Mobil ve masaüstü uyumlu modern arayüz
+### General Features
+- **Modern Blog System**: User-friendly interface for blog posts
+- **Category Management**: Organize blog posts into categories
+- **Tag System**: Organize blog posts with tags
+- **Comment System**: Readers can comment on blog posts
+- **Contact Form**: Visitors can contact the site owner
+- **Responsive Design**: Mobile and desktop compatible modern interface
 
-### Yönetim Paneli (Dashboard)
-- **Admin Paneli**: Blog içeriklerini yönetme
-- **Blog Yönetimi**: Blog yazıları oluşturma, düzenleme, silme
-- **Kategori Yönetimi**: Kategorileri yönetme
-- **Etiket Yönetimi**: Etiketleri yönetme
-- **Yorum Yönetimi**: Yorumları moderasyon
-- **İletişim Mesajları**: Gelen iletişim mesajlarını görüntüleme
-- **Kullanıcı Yönetimi**: Kullanıcı kayıt ve giriş işlemleri
+### Admin Panel (Dashboard)
+- **Admin Panel**: Manage blog content
+- **Blog Management**: Create, edit, delete blog posts
+- **Category Management**: Manage categories
+- **Tag Management**: Manage tags
+- **Comment Management**: Moderate comments
+- **Contact Messages**: View incoming contact messages
+- **User Management**: User registration and login operations
 
-## 🛠️ Teknolojiler
+## 🛠️ Technologies
 
-- **.NET 9.0**: En güncel .NET framework
-- **ASP.NET Core MVC**: Web uygulaması framework'ü
+- **.NET 9.0**: Latest .NET framework
+- **ASP.NET Core MVC**: Web application framework
 - **Entity Framework Core**: ORM (Object-Relational Mapping)
-- **SQL Server**: Veritabanı
-- **ASP.NET Core Identity**: Kullanıcı kimlik doğrulama ve yetkilendirme
-- **FluentValidation**: Model doğrulama
-- **Bootstrap**: Frontend CSS framework'ü
-- **jQuery**: JavaScript kütüphanesi
+- **SQL Server**: Database
+- **ASP.NET Core Identity**: User authentication and authorization
+- **FluentValidation**: Model validation
+- **Bootstrap**: Frontend CSS framework
+- **jQuery**: JavaScript library
 
-## 📁 Proje Yapısı
+## 📁 Project Structure
 
 ```
 StandBlog/
 ├── Areas/
-│   └── Dashboard/                 # Admin paneli
-│       ├── Controllers/          # Dashboard controller'ları
-│       ├── Models/              # View model'ları
-│       ├── Validators/          # View model validatörleri
-│       └── Views/               # Dashboard view'ları
-├── Controllers/                  # Ana sayfa controller'ları
+│   └── Dashboard/                 # Admin panel
+│       ├── Controllers/          # Dashboard controllers
+│       ├── Models/              # View models
+│       ├── Validators/          # View model validators
+│       └── Views/               # Dashboard views
+├── Controllers/                  # Main page controllers
 ├── Data/
 │   └── ApplicationDbContext.cs  # Entity Framework DbContext
 ├── Models/
-│   ├── Entities/                # Veritabanı entity'leri
-│   ├── Mappings/                # Entity konfigürasyonları
-│   └── Validators/              # Entity validatörleri
-├── Migrations/                   # Entity Framework migration'ları
-├── ViewComponents/              # Yeniden kullanılabilir view component'ları
-├── Views/                       # Ana sayfa view'ları
-└── wwwroot/                     # Statik dosyalar (CSS, JS, resimler)
+│   ├── Entities/                # Database entities
+│   ├── Mappings/                # Entity configurations
+│   └── Validators/              # Entity validators
+├── Migrations/                   # Entity Framework migrations
+├── ViewComponents/              # Reusable view components
+├── Views/                       # Main page views
+└── wwwroot/                     # Static files (CSS, JS, images)
 ```
 
-## 🗄️ Veritabanı Yapısı
+## 🗄️ Database Structure
 
-### Ana Entity'ler
-- **Blog**: Blog yazıları
-- **Category**: Kategoriler
-- **Tag**: Etiketler
-- **Comment**: Yorumlar
-- **Contact**: İletişim mesajları
-- **ApplicationUser**: Kullanıcılar (ASP.NET Identity)
+### Main Entities
+- **Blog**: Blog posts
+- **Category**: Categories
+- **Tag**: Tags
+- **Comment**: Comments
+- **Contact**: Contact messages
+- **ApplicationUser**: Users (ASP.NET Identity)
 
-### İlişkiler
+### Relationships
 - Blog → Category (Many-to-One)
 - Blog → Comments (One-to-Many)
 - Blog → BlogTags (One-to-Many)
 - BlogTag → Tag (Many-to-One)
 
-## 🚀 Kurulum
+## 🚀 Installation
 
-### Gereksinimler
+### Requirements
 - .NET 9.0 SDK
-- SQL Server (LocalDB veya SQL Server)
-- Visual Studio 2022 veya VS Code
+- SQL Server (LocalDB or SQL Server)
+- Visual Studio 2022 or VS Code
 
-### Adımlar
+### Steps
 
-1. **Projeyi klonlayın**
+1. **Clone the project**
    ```bash
    git clone [repository-url]
    cd StandBlog
    ```
 
-2. **Veritabanı bağlantı string'ini yapılandırın**
-   `appsettings.json` dosyasında `DefaultConnection` string'ini güncelleyin:
+2. **Configure database connection string**
+   Update the `DefaultConnection` string in `appsettings.json`:
    ```json
    {
      "ConnectionStrings": {
@@ -96,66 +96,66 @@ StandBlog/
    }
    ```
 
-3. **Migration'ları çalıştırın**
+3. **Run migrations**
    ```bash
    dotnet ef database update
    ```
 
-4. **Uygulamayı çalıştırın**
+4. **Run the application**
    ```bash
    dotnet run
    ```
 
-5. **Tarayıcıda açın**
+5. **Open in browser**
    ```
    https://localhost:5001
    ```
 
-## 👤 Varsayılan Kullanıcılar
+## 👤 Default Users
 
-Sistem kurulumunda otomatik olarak oluşturulan roller:
-- **Admin**: Tam yetki
-- **User**: Sınırlı yetki
+Roles automatically created during system setup:
+- **Admin**: Full permissions
+- **User**: Limited permissions
 
-## 📝 Kullanım
+## 📝 Usage
 
-### Genel Kullanıcılar
-- Ana sayfada blog yazılarını görüntüleyebilir
-- Kategori ve etiket bazında filtreleme yapabilir
-- Blog yazılarına yorum yapabilir
-- İletişim formu ile mesaj gönderebilir
+### General Users
+- View blog posts on the homepage
+- Filter by category and tags
+- Comment on blog posts
+- Send messages via contact form
 
-### Admin Kullanıcılar
-- `/Dashboard` adresinden yönetim paneline erişebilir
-- Blog yazıları, kategoriler, etiketler yönetebilir
-- Yorumları moderasyon edebilir
-- İletişim mesajlarını görüntüleyebilir
+### Admin Users
+- Access admin panel from `/Dashboard`
+- Manage blog posts, categories, tags
+- Moderate comments
+- View contact messages
 
-## 🎨 Özelleştirme
+## 🎨 Customization
 
-### Tema Değiştirme
-- `wwwroot/assets/css/` klasöründeki CSS dosyalarını düzenleyin
-- `Views/Shared/_Layout.cshtml` dosyasından ana layout'u özelleştirin
+### Theme Changes
+- Edit CSS files in `wwwroot/assets/css/` folder
+- Customize main layout from `Views/Shared/_Layout.cshtml`
 
-### Yeni Özellik Ekleme
-- Yeni entity'ler için `Models/Entities/` klasörüne ekleyin
-- Controller'ları `Controllers/` veya `Areas/Dashboard/Controllers/` klasörüne ekleyin
-- View'ları ilgili klasörlere ekleyin
+### Adding New Features
+- Add new entities to `Models/Entities/` folder
+- Add controllers to `Controllers/` or `Areas/Dashboard/Controllers/` folder
+- Add views to relevant folders
 
-## 🔧 Geliştirme
+## 🔧 Development
 
-### Migration Oluşturma
+### Creating Migrations
 ```bash
 dotnet ef migrations add MigrationName
 ```
 
-### Veritabanını Güncelleme
+### Updating Database
 ```bash
 dotnet ef database update
 ```
 
-### Validator Ekleme
-FluentValidation kullanarak yeni validatörler ekleyebilirsiniz:
+### Adding Validators
+You can add new validators using FluentValidation:
 ```csharp
 public class MyModelValidator : AbstractValidator<MyModel>
 {
@@ -166,22 +166,22 @@ public class MyModelValidator : AbstractValidator<MyModel>
 }
 ```
 
-## 📄 Lisans
+## 📄 License
 
-Bu proje MIT lisansı altında lisanslanmıştır.
+This project is licensed under the MIT License.
 
-## 🤝 Katkıda Bulunma
+## 🤝 Contributing
 
-1. Fork yapın
-2. Feature branch oluşturun (`git checkout -b feature/AmazingFeature`)
-3. Commit yapın (`git commit -m 'Add some AmazingFeature'`)
-4. Push yapın (`git push origin feature/AmazingFeature`)
-5. Pull Request oluşturun
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📞 İletişim
+## 📞 Contact
 
-Proje hakkında sorularınız için iletişim formunu kullanabilir veya issue oluşturabilirsiniz.
+You can use the contact form or create an issue for questions about the project.
 
 ---
 
-**StandBlog** - Modern, kullanıcı dostu blog platformu 🚀
+**StandBlog** - Modern, user-friendly blog platform 🚀
