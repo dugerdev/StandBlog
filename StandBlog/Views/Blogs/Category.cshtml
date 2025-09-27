@@ -1,0 +1,66 @@
+﻿@model ICollection<Blog>
+
+<section class="blog-posts grid-system">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="all-blog-posts">
+                    <div class="row">
+                        @foreach (Blog item in Model)
+                        {
+                            <div class="col-lg-6">
+                                <div class="blog-post">
+                                    <div class="blog-thumb">
+                                        <img src="~/assets/images/blog-thumb-01.jpg" alt="">
+                                    </div>
+                                    <div class="down-content">
+                                        <span>@item.Category.Name</span>
+                                        <a asp-controller="Blogs"
+                                           asp-action="Detail"
+                                           asp-route-id="@item.Id">
+                                            <h4>
+                                                @item.Title
+                                            </h4>
+                                        </a>
+                                        <ul class="post-info">
+                                            <li>
+                                                <a href="#">
+                                                    @item.CreatedOn.ToLocalTime()
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    @item.Comments.Count Comments
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <p>@item.Post.Substring(0, 255) ...</p>
+                                        <div class="post-options">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    @await Component.InvokeAsync("BlogTags", new { id = item.Id })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        @*<div class="col-lg-12">
+                                <ul class="page-numbers">
+                                    <li><a href="#">1</a></li>
+                                    <li class="active"><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                                </ul>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <partial name="_Sidebar" />
+            </div>
+        </div>
+    </div>
+</section>

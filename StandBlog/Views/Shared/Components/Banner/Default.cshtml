@@ -1,0 +1,42 @@
+﻿@model List<Blog>
+
+<div class="main-banner header-text">
+    <div class="container-fluid">
+        <div class="owl-banner owl-carousel">
+            @foreach (Blog item in Model)
+            {
+                <div class="item">
+                    <img src="~/assets/images/banner-item-01.jpg" alt="">
+                    <div class="item-content">
+                        <div class="main-content">
+                            <div class="meta-category">
+                                <span>
+                                    @item.Category.Name
+                                </span>
+                            </div>
+                            <a asp-controller="Blogs"
+                               asp-action="Detail"
+                               asp-route-id="@item.Id">
+                                <h4>
+                                    @item.Title
+                                </h4>
+                            </a>
+                            <ul class="post-info">
+                                <li>
+                                    <a href="#">
+                                        @item.CreatedOn.ToLocalTime()
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        @item.Comments.Count Comments
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

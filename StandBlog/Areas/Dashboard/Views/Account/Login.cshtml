@@ -1,0 +1,44 @@
+﻿@model StandBlog.Areas.Dashboard.Models.LoginViewModel
+
+<section class="section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="sidebar-item contact-form">
+                    <div class="sidebar-heading text-center mb-4">
+                        <h2>Login</h2>
+                    </div>
+                    <div class="content">
+                        <form asp-area="Dashboard"
+                              asp-controller="Account"
+                              asp-action="Login"
+                              method="post">
+                            @Html.AntiForgeryToken()
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                            <div class="mb-3">
+                                <input asp-for="Email" type="email" class="form-control" placeholder="Email" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 form-check">
+                                <input asp-for="RememberMe" class="form-check-input" type="checkbox" />
+                                <label asp-for="RememberMe" class="form-check-label">Remember Me?</label>
+                            </div>
+
+                            <div class="d-grid">
+                                <button class="btn btn-primary main-button" type="submit">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

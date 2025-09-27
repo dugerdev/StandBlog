@@ -1,0 +1,25 @@
+﻿@model ICollection<Comment>
+
+<div class="sidebar-item comments">
+    <div class="sidebar-heading">
+        <h2>@Model.Count comments</h2>
+    </div>
+    <div class="content">
+        <ul>
+            @foreach (Comment item in Model)
+            {
+                <li>
+                    <div class="author-thumb">
+                        <img src="~/assets/images/comment-author-01.jpg" alt="">
+                    </div>
+                    <div class="right-content">
+                        <h4>@item.Name<span>@item.CreatedOn.ToLocalTime()</span></h4>
+                        <p>
+                            @item.Message
+                        </p>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

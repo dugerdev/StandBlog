@@ -1,0 +1,15 @@
+﻿@model IEnumerable<BlogTag>
+
+<ul class="post-tags">
+    <li><i class="fa fa-tags"></i></li>
+    @foreach (BlogTag item in Model)
+    {
+        <li>
+            <a asp-controller="Blogs"
+               asp-action="Tag"
+               asp-route-id="@item.TagId">
+                @item.Tag.Name
+            </a>
+        </li>
+    }
+</ul>

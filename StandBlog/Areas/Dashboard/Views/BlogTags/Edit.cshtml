@@ -1,0 +1,53 @@
+﻿@model StandBlog.Models.Entities.BlogTag
+
+@{
+    ViewData["Title"] = "Edit Blog Tag";
+}
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Edit Blog Tag</h5>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                            <div class="mb-3">
+                                <label asp-for="BlogId" class="form-label fw-semibold"></label>
+                                <select asp-for="BlogId" class="form-select" asp-items="ViewBag.BlogId"></select>
+                                <span asp-validation-for="BlogId" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="TagId" class="form-label fw-semibold"></label>
+                                <select asp-for="TagId" class="form-select" asp-items="ViewBag.TagId"></select>
+                                <span asp-validation-for="TagId" class="text-danger"></span>
+                            </div>
+
+                            <input type="hidden" asp-for="Id" />
+
+                            <div class="d-flex justify-content-between mt-4">
+                                <a asp-action="Index" class="btn btn-outline-secondary">
+                                    <i class="bi bi-arrow-left"></i> Back to List
+                                </a>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="bi bi-save"></i> Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

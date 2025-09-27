@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Admin Dashboard</h1>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Blogs</h5>
+                    <p class="card-text">Manage all blog posts</p>
+                    <a asp-controller="Blogs" asp-action="Index" class="btn btn-primary btn-sm">Go</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Categories</h5>
+                    <p class="card-text">Organize blog categories</p>
+                    <a asp-controller="Categories" asp-action="Index" class="btn btn-primary btn-sm">Go</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Comments</h5>
+                    <p class="card-text">View & moderate comments</p>
+                    <a asp-controller="Comments" asp-action="Index" class="btn btn-primary btn-sm">Go</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Contacts</h5>
+                    <p class="card-text">Check contact messages</p>
+                    <a asp-controller="Contacts" asp-action="Index" class="btn btn-primary btn-sm">Go</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
