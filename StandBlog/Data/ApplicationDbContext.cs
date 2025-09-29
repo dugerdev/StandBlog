@@ -42,3 +42,16 @@ namespace StandBlog.Data
                 new IdentityRole
                 {
                     Id = adminRoleId,
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
+                },
+                new IdentityRole
+                {
+                    Id = userRoleId,
+                    Name = "User",
+                    NormalizedName = "USER"
+                }
+            );
+        }
+    }
+}
