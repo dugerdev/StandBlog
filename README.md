@@ -48,6 +48,181 @@ StandBlog is a comprehensive, enterprise-ready blog management platform designed
 - **🛡️ Data Validation**: Comprehensive input validation with FluentValidation
 - **📊 Admin Dashboard**: Intuitive content management interface
 
+## 📸 Screenshots
+
+### 🌐 Public Interface
+
+#### Homepage
+<div align="center">
+  <img src="images/screenshots/homepage.png" alt="StandBlog Homepage" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>Homepage screenshot will be added here</p>
+    <small>Please add <code>homepage.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>Modern, responsive homepage with featured blog posts and navigation</em></p>
+</div>
+
+#### Blog Detail
+<div align="center">
+  <img src="images/screenshots/blog-detail.png" alt="Blog Detail Page" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>Blog detail screenshot will be added here</p>
+    <small>Please add <code>blog-detail.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>Detailed blog post view with comments and social sharing</em></p>
+</div>
+
+#### Contact Page
+<div align="center">
+  <img src="images/screenshots/contact-page.png" alt="Contact Page" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>Contact page screenshot will be added here</p>
+    <small>Please add <code>contact-page.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>Contact form with validation and responsive design</em></p>
+</div>
+
+#### User Registration
+<div align="center">
+  <img src="images/screenshots/register-page.png" alt="User Registration" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>User registration screenshot will be added here</p>
+    <small>Please add <code>register-page.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>User registration form with validation</em></p>
+</div>
+
+#### User Login
+<div align="center">
+  <img src="images/screenshots/login-page.png" alt="User Login" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>User login screenshot will be added here</p>
+    <small>Please add <code>login-page.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>User login form with remember me option</em></p>
+</div>
+
+### 🔧 Admin Dashboard
+
+#### Dashboard Overview
+<div align="center">
+  <img src="images/screenshots/admin-dashboard.png" alt="Admin Dashboard" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>Admin dashboard screenshot will be added here</p>
+    <small>Please add <code>admin-dashboard.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>Comprehensive admin dashboard with analytics and quick actions</em></p>
+</div>
+
+#### Blog Management
+<div align="center">
+  <img src="images/screenshots/blog-management.png" alt="Blog Management" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>Blog management screenshot will be added here</p>
+    <small>Please add <code>blog-management.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>Blog post creation and management interface</em></p>
+</div>
+
+#### Category Management
+<div align="center">
+  <img src="images/screenshots/category-management.png" alt="Category Management" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>Category management screenshot will be added here</p>
+    <small>Please add <code>category-management.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>Category organization and management system</em></p>
+</div>
+
+#### Comment Moderation
+<div align="center">
+  <img src="images/screenshots/comment-moderation.png" alt="Comment Moderation" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>Comment moderation screenshot will be added here</p>
+    <small>Please add <code>comment-moderation.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>Comment moderation and approval system</em></p>
+</div>
+
+#### Contact Management
+<div align="center">
+  <img src="images/screenshots/contact-management.png" alt="Contact Management" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>Contact management screenshot will be added here</p>
+    <small>Please add <code>contact-management.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>Contact message management and response system</em></p>
+</div>
+
+### 📱 Mobile Responsive Design
+
+#### Mobile Homepage
+<div align="center">
+  <img src="images/screenshots/mobile-homepage.png" alt="Mobile Homepage" width="400" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>Mobile homepage screenshot will be added here</p>
+    <small>Please add <code>mobile-homepage.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>Mobile-optimized homepage design</em></p>
+</div>
+
+#### Mobile Blog View
+<div align="center">
+  <img src="images/screenshots/mobile-blog.png" alt="Mobile Blog View" width="400" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>Mobile blog view screenshot will be added here</p>
+    <small>Please add <code>mobile-blog.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>Responsive blog post view on mobile devices</em></p>
+</div>
+
+### 🎨 UI Components
+
+#### Navigation Menu
+<div align="center">
+  <img src="images/screenshots/navigation.png" alt="Navigation Menu" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>Navigation menu screenshot will be added here</p>
+    <small>Please add <code>navigation.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>Clean and intuitive navigation system</em></p>
+</div>
+
+#### Sidebar Components
+<div align="center">
+  <img src="images/screenshots/sidebar.png" alt="Sidebar Components" width="400" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>Sidebar components screenshot will be added here</p>
+    <small>Please add <code>sidebar.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>Sidebar with recent posts, categories, and tag cloud</em></p>
+</div>
+
+#### Search Functionality
+<div align="center">
+  <img src="images/screenshots/search.png" alt="Search Functionality" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
+  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
+    <h4>📸 Screenshot Placeholder</h4>
+    <p>Search functionality screenshot will be added here</p>
+    <small>Please add <code>search.png</code> to the <code>images/screenshots/</code> directory</small>
+  </div>
+  <p><em>Advanced search and filtering capabilities</em></p>
+</div>
+
 ## ✨ Features
 
 ### 🌐 Public Features
@@ -424,7 +599,7 @@ For contact form functionality, configure SMTP settings:
     "SmtpPassword": "your-app-password",
     "FromEmail": "noreply@standblog.com",
     "FromName": "StandBlog"
-  }
+    }
 }
 ```
 
