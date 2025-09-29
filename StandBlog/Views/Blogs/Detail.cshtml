@@ -3,6 +3,7 @@
 <section class="blog-posts grid-system">
     <div class="container">
         <div class="row">
+            <!-- Blog detayı -->
             <div class="col-lg-8">
                 <div class="all-blog-posts">
                     <div class="row">
@@ -13,16 +14,16 @@
                                 </div>
                                 <div class="down-content">
                                     <span>@Model.Category.Name</span>
-                                    <a href="#">
+                                    <a asp-controller="Blogs"
+                                       asp-action="Detail"
+                                       asp-route-id="@Model.Id">
                                         <h4>@Model.Title</h4>
                                     </a>
                                     <ul class="post-info">
-                                        <li><a href="#">@Model.CreatedOn.ToLocalTime()</a></li>
-                                        <li><a href="#">@Model.Comments.Count Comments</a></li>
+                                        <li>@Model.CreatedOn.ToLocalTime()</li>
+                                        <li>@Model.Comments.Count Comments</li>
                                     </ul>
-                                    <p>
-                                        @Model.Post
-                                    </p>
+                                    <p>@Model.Post</p>
                                     <div class="post-options">
                                         <div class="row">
                                             <div class="col-6">
@@ -33,15 +34,21 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Blog yorumları -->
                         <div class="col-lg-12">
-                            @await Component.InvokeAsync("BlogComments", new { Model.Id })
+                            @await Component.InvokeAsync("BlogComments", new { id = Model.Id })
                         </div>
+
+                        <!-- Yorum ekleme formu -->
                         <div class="col-lg-12">
-                            <partial name="_CommentAdd" model="new Comment() { BlogId = Model.Id }" />
+                            <partial name="_CommentAdd" model="new Comment { BlogId = Model.Id }" />
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Sidebar -->
             <div class="col-lg-4">
                 <partial name="_Sidebar" />
             </div>

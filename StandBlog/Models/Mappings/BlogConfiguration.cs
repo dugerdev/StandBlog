@@ -2,43 +2,53 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using StandBlog.Models.Entities;
 
-namespace StandBlog.Models.Mappings;
-
-public class BlogConfiguration
-    : IEntityTypeConfiguration<Blog>
+namespace StandBlog.Models.Mappings
 {
-    public void Configure(EntityTypeBuilder<Blog> builder)
+    public class BlogConfiguration : IEntityTypeConfiguration<Blog>
     {
-        builder.ToTable("Blogs", "app");
+        public void Configure(EntityTypeBuilder<Blog> builder)
+        {
+            // Tablo adı ve şema
+            builder.ToTable("Blogs", "app");
 
-        builder.HasKey(x => x.Id);
+            // Birincil anahtar
+            builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.Id)
-               .HasMaxLength(36);
+            // Id property ayarları
+            builder.Property(x => x.Id)
+                   .HasMaxLength(36);
 
-        builder.Property(x => x.IsDeleted)
-               .IsRequired()
-               .HasDefaultValue(false);
+            // Silinme durumu property'si
+            builder.Property(x => x.IsDeleted)
+                   .IsRequired()
+                   .HasDefaultValue(false);
 
-        builder.Property(x => x.CreatedOn)
-               .IsRequired()
-               .ValueGeneratedOnAdd();
+            // Oluşturulma zamanı property'si
+            builder.Property(x => x.CreatedOn)
+                   .IsRequired()
+                   .ValueGeneratedOnAdd();
 
-        builder.HasQueryFilter(x => !x.IsDeleted);
+            // Global query filter: sadece silinmemiş kayıtları getir
+            builder.HasQueryFilter(x => !x.IsDeleted);
 
-        builder.Property(x => x.Title)
-               .IsRequired()
-               .HasMaxLength(256);
+            // Title property ayarları
+            builder.Property(x => x.Title)
+                   .IsRequired()
+                   .HasMaxLength(256);
 
-        builder.HasIndex(x => x.Title)
-               .IsUnique();
+            // Title için benzersiz index
+            builder.HasIndex(x => x.Title)
+                   .IsUnique();
 
-        builder.Property(x => x.Post)
-               .IsRequired()
-               .HasColumnType("ntext");
+            // Post property ayarları
+            builder.Property(x => x.Post)
+                   .IsRequired()
+                   .HasColumnType("ntext");
 
-        builder.HasOne(b => b.Category)
-               .WithMany(c => c.Blogs)
-               .HasForeignKey(b => b.CategoryId);
+            // İlişki: Blog -> Category
+            builder.HasOne(b => b.Category)
+                   .WithMany(c => c.Blogs)
+                   .HasForeignKey(b => b.CategoryId);
+        }
     }
 }

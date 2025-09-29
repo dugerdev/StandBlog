@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Blog>
+
 <!-- Banner Starts Here -->
 @await Component.InvokeAsync("Banner")
 <!-- Banner Ends Here -->
@@ -6,6 +7,8 @@
 <section class="blog-posts">
     <div class="container">
         <div class="row">
+
+            <!-- Blog listesi -->
             <div class="col-lg-8">
                 <div class="all-blog-posts">
                     <div class="row">
@@ -27,9 +30,7 @@
                                             <li><a href="#">@item.CreatedOn.ToLocalTime()</a></li>
                                             <li><a href="#">@item.Comments.Count Comments</a></li>
                                         </ul>
-                                        <p>
-                                            @item.Post.Substring(0, 255)
-                                        </p>
+                                        <p>@item.Post.Substring(0, 255) ...</p>
                                         <div class="post-options">
                                             <div class="row">
                                                 <div class="col-6">
@@ -44,9 +45,12 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Sidebar -->
             <div class="col-lg-4">
                 <partial name="_Sidebar" />
             </div>
+
         </div>
     </div>
 </section>

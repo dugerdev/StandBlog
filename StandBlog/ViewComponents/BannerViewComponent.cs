@@ -4,18 +4,18 @@ using StandBlog.Data;
 
 namespace StandBlog.ViewComponents;
 
-public class BannerViewComponent(ApplicationDbContext context)
-    : ViewComponent
+public class BannerViewComponent(ApplicationDbContext context) : ViewComponent
 {
-    public async Task<IViewComponentResult> InvokeAsync() 
+    public async Task<IViewComponentResult> InvokeAsync()
     {
+        // En çok yorum almış son 6 blogu getiriyoruz
         var blogs = await context.Blogs
-                                 .Include(x => x.Category)
-                                 .Include(x => x.Comments)
-                                 .OrderByDescending(x => x.Comments.Count)
-                                 .Take(6)
+                                 .Include(b => b.Category)      // Blogun kategorisini dahil et
+                                 .Include(b => b.Comments)      // Blogun yorumlarını dahil et
+                                 .OrderByDescending(b => b.Comments.Count) // Yorum sayısına göre sırala
+                                 .Take(6)                        // Sadece son 6 blogu al
                                  .ToListAsync();
 
-        return View(blogs);
+        return View(blogs); // View'e blogları gönder
     }
 }

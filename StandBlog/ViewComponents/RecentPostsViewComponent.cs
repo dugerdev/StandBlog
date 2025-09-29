@@ -4,15 +4,16 @@ using StandBlog.Data;
 
 namespace StandBlog.ViewComponents;
 
-public class RecentPostsViewComponent(ApplicationDbContext context)
-    : ViewComponent
+public class RecentPostsViewComponent(ApplicationDbContext context) : ViewComponent
 {
     public async Task<IViewComponentResult> InvokeAsync()
     {
+        // Son eklenen 3 blogu getir
         var latest = await context.Blogs
-                                  .OrderBy(x => x.CreatedOn)
+                                  .OrderByDescending(x => x.CreatedOn)
                                   .Take(3)
                                   .ToListAsync();
-        return View(latest);
+
+        return View(latest); // View'e gönder
     }
 }

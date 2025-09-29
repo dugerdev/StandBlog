@@ -3,35 +3,38 @@ using Microsoft.AspNetCore.Mvc;
 using StandBlog.Data;
 using StandBlog.Models.Entities;
 
-namespace StandBlog.Controllers;
-
-public class ContactController(
-    ApplicationDbContext context,
-    IValidator<Contact> validator
-    ) : Controller
+namespace StandBlog.Controllers
 {
-    public IActionResult Us() => View();
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Us(Contact model)
+    public class ContactController(
+        ApplicationDbContext context,
+        IValidator<Contact> validator
+    ) : Controller
     {
-        var result = await validator.ValidateAsync(model);
+        public IActionResult Us() => View();
 
-        if (result.IsValid)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Us(Contact model)
         {
-            model.Id = Guid.CreateVersion7(TimeProvider.System.GetLocalNow()).ToString();
-            model.CreatedOn = TimeProvider.System.GetLocalNow();
+            var result = await validator.ValidateAsync(model);
 
-            await context.Contacts.AddAsync(model);
-            await context.SaveChangesAsync();
+            if (result.IsValid)
+            {
+                model.Id = Guid.CreateVersion7(TimeProvider.System.GetLocalNow()).ToString();
+                model.CreatedOn = TimeProvider.System.GetLocalNow();
 
-            return RedirectToAction("Index", "Home");
+                await context.Contacts.AddAsync(model);
+                await context.SaveChangesAsync();
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            foreach (var item in result.Errors)
+            {
+                ModelState.AddModelError(item.ErrorCode, item.ErrorMessage);
+            }
+
+            return View(model);
         }
-
-        foreach (var item in result.Errors)
-            ModelState.AddModelError(item.ErrorCode, item.ErrorMessage);
-
-        return View(model);
     }
 }

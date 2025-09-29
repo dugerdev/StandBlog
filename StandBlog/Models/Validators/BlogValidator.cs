@@ -1,20 +1,27 @@
 ﻿using FluentValidation;
 using StandBlog.Models.Entities;
 
-namespace StandBlog.Models.Validators;
-
-public class BlogValidator
-    : AbstractValidator<Blog>
+namespace StandBlog.Models.Validators
 {
-    public BlogValidator()
+    public class BlogValidator : AbstractValidator<Blog>
     {
-        RuleFor(x => x.CategoryId)
-            .NotEmpty();
-        RuleFor(x => x.Title)
-            .NotEmpty()
-            .Length(1, 256)
-            .WithMessage("Title lenght can be least 1 and up to 256.");
-        RuleFor(x => x.Post)
-            .NotEmpty();
+        public BlogValidator()
+        {
+            // CategoryId boş olamaz
+            RuleFor(x => x.CategoryId)
+                .NotEmpty()
+                .WithMessage("CategoryId cannot be empty.");
+
+            // Title boş olamaz ve 1-256 karakter arasında olmalı
+            RuleFor(x => x.Title)
+                .NotEmpty()
+                .Length(1, 256)
+                .WithMessage("Title length must be at least 1 and at most 256 characters.");
+
+            // Post boş olamaz
+            RuleFor(x => x.Post)
+                .NotEmpty()
+                .WithMessage("Post cannot be empty.");
+        }
     }
 }

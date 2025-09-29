@@ -1,9 +1,11 @@
-﻿namespace StandBlog.Models.Entities;
-
-public class Category
-    : BaseEntity
+﻿namespace StandBlog.Models.Entities
 {
-    public string Name { get; set; } = string.Empty;
+    public class Category : BaseEntity
+    {
+        // Kategori adı
+        public string Name { get; set; } = string.Empty;
 
-    public ICollection<Blog>? Blogs { get; set; }
+        // Bu kategoriye ait bloglar
+        public ICollection<Blog>? Blogs { get; set; }
+    }
 }

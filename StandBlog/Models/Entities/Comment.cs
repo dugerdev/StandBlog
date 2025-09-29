@@ -1,12 +1,20 @@
-﻿namespace StandBlog.Models.Entities;
-
-public class Comment
-    : BaseEntity
+﻿namespace StandBlog.Models.Entities
 {
-    public string BlogId { get; set; } = string.Empty;
-    public string Name { get; set; } = string.Empty;
-    public string Email { get; set; } = string.Empty;
-    public string Message { get; set; } = string.Empty;
+    public class Comment : BaseEntity
+    {
+        // Yorumun ait olduğu blogun ID'si
+        public string BlogId { get; set; } = string.Empty;
 
-    public Blog? Blog { get; set; }
+        // Yorum yapanın adı
+        public string Name { get; set; } = string.Empty;
+
+        // Yorum yapanın e-posta adresi
+        public string Email { get; set; } = string.Empty;
+
+        // Yorum içeriği
+        public string Message { get; set; } = string.Empty;
+
+        // İlişkili blog
+        public Blog? Blog { get; set; }
+    }
 }

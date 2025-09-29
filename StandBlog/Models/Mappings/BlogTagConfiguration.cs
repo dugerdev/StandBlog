@@ -2,36 +2,44 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using StandBlog.Models.Entities;
 
-namespace StandBlog.Models.Mappings;
-
-public class BlogTagConfiguration
-    : IEntityTypeConfiguration<BlogTag>
+namespace StandBlog.Models.Mappings
 {
-    public void Configure(EntityTypeBuilder<BlogTag> builder)
+    public class BlogTagConfiguration : IEntityTypeConfiguration<BlogTag>
     {
-        builder.ToTable("BlogTags", "app");
+        public void Configure(EntityTypeBuilder<BlogTag> builder)
+        {
+            // Tablo adı ve şema
+            builder.ToTable("BlogTags", "app");
 
-        builder.HasKey(x => x.Id);
+            // Birincil anahtar
+            builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.Id)
-               .HasMaxLength(36);
+            // Id property ayarları
+            builder.Property(x => x.Id)
+                   .HasMaxLength(36);
 
-        builder.Property(x => x.IsDeleted)
-               .IsRequired()
-               .HasDefaultValue(false);
+            // Silinme durumu property'si
+            builder.Property(x => x.IsDeleted)
+                   .IsRequired()
+                   .HasDefaultValue(false);
 
-        builder.Property(x => x.CreatedOn)
-               .IsRequired()
-               .ValueGeneratedOnAdd();
+            // Oluşturulma zamanı property'si
+            builder.Property(x => x.CreatedOn)
+                   .IsRequired()
+                   .ValueGeneratedOnAdd();
 
-        builder.HasQueryFilter(x => !x.IsDeleted);
+            // Global query filter: sadece silinmemiş kayıtları getir
+            builder.HasQueryFilter(x => !x.IsDeleted);
 
-        builder.HasOne(bt => bt.Blog)
-               .WithMany(b => b.Tags)
-               .HasForeignKey(bt => bt.BlogId);
+            // İlişki: BlogTag -> Blog
+            builder.HasOne(bt => bt.Blog)
+                   .WithMany(b => b.Tags)
+                   .HasForeignKey(bt => bt.BlogId);
 
-        builder.HasOne(bt => bt.Tag)
-               .WithMany(t => t.Blogs)
-               .HasForeignKey(bt => bt.TagId);
+            // İlişki: BlogTag -> Tag
+            builder.HasOne(bt => bt.Tag)
+                   .WithMany(t => t.Blogs)
+                   .HasForeignKey(bt => bt.TagId);
+        }
     }
 }
