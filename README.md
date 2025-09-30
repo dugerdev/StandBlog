@@ -50,143 +50,31 @@ StandBlog is a comprehensive, enterprise-ready blog management platform designed
 
 ## 📸 Screenshots
 
+> **📸 All Application Screenshots Available**: The `images` folder contains comprehensive screenshots of the entire StandBlog application. These include all public interfaces, admin dashboard features, and mobile responsive designs. Anyone interested in examining the project visually can find all the screenshots organized and labeled in the `images` directory.
+
 ### 🌐 Public Interface
 
-#### Homepage
-<div align="center">
-  <img src="images/screenshots/homepage.png" alt="StandBlog Homepage" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
-  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
-    <h4>📸 Screenshot Needed</h4>
-    <p>Homepage screenshot will be added here</p>
-    <small>Please add <code>homepage.png</code> to the <code>images/screenshots/</code> directory</small>
-  </div>
-  <p><em>Modern, responsive homepage with featured blog posts and navigation</em></p>
-</div>
-
-#### Blog Detail
-<div align="center">
-  <img src="images/screenshots/blog-detail.png" alt="Blog Detail Page" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
-  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
-    <h4>📸 Screenshot Needed</h4>
-    <p>Blog detail screenshot will be added here</p>
-    <small>Please add <code>blog-detail.png</code> to the <code>images/screenshots/</code> directory</small>
-  </div>
-  <p><em>Detailed blog post view with comments and social sharing</em></p>
-</div>
-
-#### Contact Page
-<div align="center">
-  <img src="images/screenshots/contact-page.png" alt="Contact Page" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
-  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
-    <h4>📸 Screenshot Needed</h4>
-    <p>Contact page screenshot will be added here</p>
-    <small>Please add <code>contact-page.png</code> to the <code>images/screenshots/</code> directory</small>
-  </div>
-  <p><em>Contact form with validation and responsive design</em></p>
-</div>
-
-#### User Registration
-<div align="center">
-  <img src="images/screenshots/register-page.png" alt="User Registration" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
-  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
-    <h4>📸 Screenshot Needed</h4>
-    <p>User registration screenshot will be added here</p>
-    <small>Please add <code>register-page.png</code> to the <code>images/screenshots/</code> directory</small>
-  </div>
-  <p><em>User registration form with validation</em></p>
-</div>
-
-#### User Login
-<div align="center">
-  <img src="images/screenshots/login-page.png" alt="User Login" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
-  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
-    <h4>📸 Screenshot Needed</h4>
-    <p>User login screenshot will be added here</p>
-    <small>Please add <code>login-page.png</code> to the <code>images/screenshots/</code> directory</small>
-  </div>
-  <p><em>User login form with remember me option</em></p>
-</div>
+The public interface includes:
+- **Homepage**: Modern, responsive homepage with featured blog posts and navigation
+- **Blog Detail**: Detailed blog post view with comments and social sharing
+- **Contact Page**: Contact form with validation and responsive design
+- **User Registration**: User registration form with validation
+- **User Login**: User login form with remember me option
 
 ### 🔧 Admin Dashboard
 
-#### Dashboard Overview
-<div align="center">
-  <img src="images/screenshots/admin-dashboard.png" alt="Admin Dashboard" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
-  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
-    <h4>📸 Screenshot Needed</h4>
-    <p>Admin dashboard screenshot will be added here</p>
-    <small>Please add <code>admin-dashboard.png</code> to the <code>images/screenshots/</code> directory</small>
-  </div>
-  <p><em>Comprehensive admin dashboard with analytics and quick actions</em></p>
-</div>
-
-#### Blog Management
-<div align="center">
-  <img src="images/screenshots/blog-management.png" alt="Blog Management" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
-  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
-    <h4>📸 Screenshot Needed</h4>
-    <p>Blog management screenshot will be added here</p>
-    <small>Please add <code>blog-management.png</code> to the <code>images/screenshots/</code> directory</small>
-  </div>
-  <p><em>Blog post creation and management interface</em></p>
-</div>
-
-#### Category Management
-<div align="center">
-  <img src="images/screenshots/category-management.png" alt="Category Management" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
-  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
-    <h4>📸 Screenshot Needed</h4>
-    <p>Category management screenshot will be added here</p>
-    <small>Please add <code>category-management.png</code> to the <code>images/screenshots/</code> directory</small>
-  </div>
-  <p><em>Category organization and management system</em></p>
-</div>
-
-#### Comment Moderation
-<div align="center">
-  <img src="images/screenshots/comment-moderation.png" alt="Comment Moderation" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
-  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
-    <h4>📸 Screenshot Needed</h4>
-    <p>Comment moderation screenshot will be added here</p>
-    <small>Please add <code>comment-moderation.png</code> to the <code>images/screenshots/</code> directory</small>
-  </div>
-  <p><em>Comment moderation and approval system</em></p>
-</div>
-
-#### Contact Management
-<div align="center">
-  <img src="images/screenshots/contact-management.png" alt="Contact Management" width="800" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
-  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
-    <h4>📸 Screenshot Needed</h4>
-    <p>Contact management screenshot will be added here</p>
-    <small>Please add <code>contact-management.png</code> to the <code>images/screenshots/</code> directory</small>
-  </div>
-  <p><em>Contact message management and response system</em></p>
-</div>
+The admin dashboard features:
+- **Dashboard Overview**: Comprehensive admin dashboard with analytics and quick actions
+- **Blog Management**: Blog post creation and management interface
+- **Category Management**: Category organization and management system
+- **Comment Moderation**: Comment moderation and approval system
+- **Contact Management**: Contact message management and response system
 
 ### 📱 Mobile Responsive Design
 
-#### Mobile Homepage
-<div align="center">
-  <img src="images/screenshots/mobile-homepage.png" alt="Mobile Homepage" width="400" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
-  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
-    <h4>📸 Screenshot Needed</h4>
-    <p>Mobile homepage screenshot will be added here</p>
-    <small>Please add <code>mobile-homepage.png</code> to the <code>images/screenshots/</code> directory</small>
-  </div>
-  <p><em>Mobile-optimized homepage design</em></p>
-</div>
-
-#### Mobile Blog View
-<div align="center">
-  <img src="images/screenshots/mobile-blog.png" alt="Mobile Blog View" width="400" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/>
-  <div style="display:none; padding: 40px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; color: #6c757d;">
-    <h4>📸 Screenshot Needed</h4>
-    <p>Mobile blog view screenshot will be added here</p>
-    <small>Please add <code>mobile-blog.png</code> to the <code>images/screenshots/</code> directory</small>
-  </div>
-  <p><em>Responsive blog post view on mobile devices</em></p>
-</div>
+Mobile interface includes:
+- **Mobile Homepage**: Mobile-optimized homepage design
+- **Mobile Blog View**: Responsive blog post view on mobile devices
 
 
 ## ✨ Features
