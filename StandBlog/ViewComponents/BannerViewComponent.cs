@@ -9,13 +9,20 @@ public class BannerViewComponent(ApplicationDbContext context) : ViewComponent
     public async Task<IViewComponentResult> InvokeAsync()
     {
         // En çok yorum almış son 6 blogu getiriyoruz
-        var blogs = await context.Blogs
-                                 .Include(b => b.Category)      // Blogun kategorisini dahil et
-                                 .Include(b => b.Comments)      // Blogun yorumlarını dahil et
-                                 .OrderByDescending(b => b.Comments != null ? b.Comments.Count : 0) // Yorum sayısına göre sırala
-                                 .Take(6)                        // Sadece son 6 blogu al
-                                 .ToListAsync();
+        // Önce tüm blogları çekip, sonra memory'de sıralıyoruz
+        // (EF Core, Include edilmiş collection'ın Count'ını OrderBy içinde kullanamaz)
+        var allBlogs = await context.Blogs
+                                    .Include(b => b.Category)
+                                    .Include(b => b.Comments)
+                                    .ToListAsync();
 
-        return View(blogs); // View'e blogları gönder
+        // Memory'de yorum sayısına göre sırala ve en çok yorum alan 6 blogu al
+        var blogs = allBlogs
+                    .OrderByDescending(b => b.Comments?.Count ?? 0)
+                    .ThenByDescending(b => b.CreatedOn)
+                    .Take(6)
+                    .ToList();
+
+        return View(blogs);
     }
 }
