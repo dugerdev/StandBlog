@@ -24,6 +24,13 @@ builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
 // Seed data
 using (var scope = app.Services.CreateScope())
 {
@@ -34,6 +41,7 @@ using (var scope = app.Services.CreateScope())
     await SeedData.SeedAsync(context, userManager, roleManager);
 }
 
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();

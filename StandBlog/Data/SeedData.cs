@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using StandBlog.Models.Entities;
 
 namespace StandBlog.Data
@@ -8,7 +9,19 @@ namespace StandBlog.Data
         public static async Task SeedAsync(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             // Ensure database is created
-            await context.Database.EnsureCreatedAsync();
+            try
+            {
+                // Try to apply migrations if they exist
+                if ((await context.Database.GetPendingMigrationsAsync()).Any())
+                {
+                    await context.Database.MigrateAsync();
+                }
+            }
+            catch
+            {
+                // If migrations fail, ensure database is created
+                await context.Database.EnsureCreatedAsync();
+            }
 
             // Seed Categories
             if (!context.Categories.Any())
@@ -76,6 +89,7 @@ namespace StandBlog.Data
 
                         <h3>Getting Started</h3>
                         <p>To get started with ASP.NET Core 9.0, you'll need to install the latest .NET SDK and create a new project using the dotnet CLI or Visual Studio.</p>",
+                        ImageUrl = "~/assets/images/blog-post-01.jpg",
                         CategoryId = categories.First(c => c.Name == "Web Development").Id,
                         CreatedOn = DateTime.Now.AddDays(-5)
                     },
@@ -95,6 +109,7 @@ namespace StandBlog.Data
                             <li>Optimize queries to avoid N+1 problems</li>
                             <li>Use migrations for database schema changes</li>
                         </ul>",
+                        ImageUrl = "~/assets/images/blog-post-02.jpg",
                         CategoryId = categories.First(c => c.Name == "Programming").Id,
                         CreatedOn = DateTime.Now.AddDays(-3)
                     },
@@ -109,6 +124,7 @@ namespace StandBlog.Data
 
                         <h3>Project Setup</h3>
                         <p>Setting up the project involves creating both frontend and backend projects, configuring CORS, and implementing authentication and authorization.</p>",
+                        ImageUrl = "~/assets/images/blog-post-03.jpg",
                         CategoryId = categories.First(c => c.Name == "Web Development").Id,
                         CreatedOn = DateTime.Now.AddDays(-1)
                     },
@@ -127,6 +143,7 @@ namespace StandBlog.Data
                             <li>Unsupervised Learning</li>
                             <li>Reinforcement Learning</li>
                         </ul>",
+                        ImageUrl = "~/assets/images/blog-post-04.jpg",
                         CategoryId = categories.First(c => c.Name == "Data Science").Id,
                         CreatedOn = DateTime.Now.AddDays(-7)
                     },
@@ -145,6 +162,7 @@ namespace StandBlog.Data
                         </ul>
 
                         <p>With Xamarin, you can write your business logic once and share it across all platforms, while still delivering native user experiences.</p>",
+                        ImageUrl = "~/assets/images/blog-post-05.jpg",
                         CategoryId = categories.First(c => c.Name == "Mobile Development").Id,
                         CreatedOn = DateTime.Now.AddDays(-10)
                     },
@@ -159,6 +177,7 @@ namespace StandBlog.Data
 
                         <h3>Monitoring and Logging</h3>
                         <p>Proper monitoring and logging are crucial for maintaining application health and performance in production environments.</p>",
+                        ImageUrl = "~/assets/images/blog-post-06.jpg",
                         CategoryId = categories.First(c => c.Name == "Technology").Id,
                         CreatedOn = DateTime.Now.AddDays(-2)
                     }

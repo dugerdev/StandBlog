@@ -40,19 +40,26 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")">
                             <a class="nav-link"
                                asp-controller="Home"
                                asp-action="Index">
                                 Home
-                                <span class="sr-only">(current)</span>
+                                @if (ViewContext.RouteData.Values["controller"]?.ToString() == "Home")
+                                {
+                                    <span class="sr-only">(current)</span>
+                                }
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"]?.ToString() == "Contact" ? "active" : "")">
                             <a class="nav-link"
                                asp-controller="Contact"
                                asp-action="Us">
                                 Contact Us
+                                @if (ViewContext.RouteData.Values["controller"]?.ToString() == "Contact")
+                                {
+                                    <span class="sr-only">(current)</span>
+                                }
                             </a>
                         </li>
                     </ul>
@@ -63,6 +70,8 @@
 
     <!-- Page Content -->
     @RenderBody()
+    
+    @RenderSection("Scripts", required: false)
 
     <footer>
         <div class="container">

@@ -10,7 +10,7 @@ namespace StandBlog.Controllers
         IValidator<Contact> validator
     ) : Controller
     {
-        public IActionResult Us() => View();
+        public IActionResult Us() => View(new Contact());
 
         [HttpPost]
         [ValidateAntiForgeryToken]

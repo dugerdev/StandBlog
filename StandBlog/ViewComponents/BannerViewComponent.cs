@@ -12,7 +12,7 @@ public class BannerViewComponent(ApplicationDbContext context) : ViewComponent
         var blogs = await context.Blogs
                                  .Include(b => b.Category)      // Blogun kategorisini dahil et
                                  .Include(b => b.Comments)      // Blogun yorumlarını dahil et
-                                 .OrderByDescending(b => b.Comments.Count) // Yorum sayısına göre sırala
+                                 .OrderByDescending(b => b.Comments != null ? b.Comments.Count : 0) // Yorum sayısına göre sırala
                                  .Take(6)                        // Sadece son 6 blogu al
                                  .ToListAsync();
 

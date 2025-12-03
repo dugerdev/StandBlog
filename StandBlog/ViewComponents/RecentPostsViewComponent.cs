@@ -10,6 +10,8 @@ public class RecentPostsViewComponent(ApplicationDbContext context) : ViewCompon
     {
         // Son eklenen 3 blogu getir
         var latest = await context.Blogs
+                                  .Include(x => x.Category)
+                                  .Include(x => x.Comments)
                                   .OrderByDescending(x => x.CreatedOn)
                                   .Take(3)
                                   .ToListAsync();

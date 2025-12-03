@@ -45,6 +45,10 @@ namespace StandBlog.Models.Mappings
                    .IsRequired()
                    .HasColumnType("ntext");
 
+            // ImageUrl property ayarları
+            builder.Property(x => x.ImageUrl)
+                   .HasMaxLength(500);
+
             // İlişki: Blog -> Category
             builder.HasOne(b => b.Category)
                    .WithMany(c => c.Blogs)

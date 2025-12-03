@@ -2,21 +2,32 @@
 
 <div class="sidebar-item comments">
     <div class="sidebar-heading">
-        <h2>@Model.Count comments</h2>
+        <h2>@(Model?.Count ?? 0) comments</h2>
     </div>
     <div class="content">
         <ul>
-            @foreach (Comment item in Model)
+            @if (Model != null && Model.Any())
             {
+                @foreach (Comment item in Model)
+                {
                 <li>
                     <div class="author-thumb">
                         <img src="~/assets/images/comment-author-01.jpg" alt="">
                     </div>
                     <div class="right-content">
-                        <h4>@item.Name<span>@item.CreatedOn.ToLocalTime()</span></h4>
+                        <h4>@item.Name<span>@item.CreatedOn.ToLocalTime().ToString("MMM dd, yyyy")</span></h4>
                         <p>
                             @item.Message
                         </p>
+                    </div>
+                </li>
+                }
+            }
+            else
+            {
+                <li>
+                    <div class="right-content">
+                        <p>No comments yet. Be the first to comment!</p>
                     </div>
                 </li>
             }

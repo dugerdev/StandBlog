@@ -13,11 +13,21 @@ namespace StandBlog.Controllers
     {
         public async Task<IActionResult> Detail(string id)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                return NotFound();
+            }
+
             var blog = await context.Blogs
                                     .Include(x => x.Category)
                                     .Include(x => x.Comments)
                                     .Where(x => x.Id == id)
                                     .SingleOrDefaultAsync();
+
+            if (blog == null)
+            {
+                return NotFound();
+            }
 
             return View(blog);
         }
@@ -50,6 +60,11 @@ namespace StandBlog.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CommentAdd(Comment model)
         {
+            if (model == null || string.IsNullOrEmpty(model.BlogId))
+            {
+                return BadRequest();
+            }
+
             var result = await validator.ValidateAsync(model);
 
             if (result.IsValid)
@@ -68,7 +83,7 @@ namespace StandBlog.Controllers
                 ModelState.AddModelError(item.ErrorCode, item.ErrorMessage);
             }
 
-            return RedirectToAction("Detail", "Blogs");
+            return RedirectToAction("Detail", new { id = model.BlogId });
         }
     }
 }
