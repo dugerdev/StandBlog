@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StandBlog.Data;
@@ -11,6 +12,26 @@ namespace StandBlog.Controllers
         IValidator<Comment> validator
     ) : Controller
     {
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 6)
+        {
+            var blogs = await context.Blogs
+                                     .Include(x => x.Category)
+                                     .Include(x => x.Comments)
+                                     .OrderByDescending(x => x.CreatedOn)
+                                     .Skip((page - 1) * pageSize)
+                                     .Take(pageSize)
+                                     .ToListAsync();
+
+            var totalBlogs = await context.Blogs.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalBlogs / (double)pageSize);
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.TotalBlogs = totalBlogs;
+
+            return View(blogs);
+        }
+
         public async Task<IActionResult> Detail(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -58,8 +79,15 @@ namespace StandBlog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> CommentAdd(Comment model)
         {
+            // Double check - kullanıcı giriş yapmış mı?
+            if (User?.Identity?.IsAuthenticated != true)
+            {
+                return Challenge(); // Login sayfasına yönlendir
+            }
+
             if (model == null || string.IsNullOrEmpty(model.BlogId))
             {
                 return BadRequest();

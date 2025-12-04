@@ -8,7 +8,7 @@ public class BannerViewComponent(ApplicationDbContext context) : ViewComponent
 {
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        // En çok yorum almış son 6 blogu getiriyoruz
+        // Slider için en çok yorum almış ilk 3 blogu getiriyoruz
         // Önce tüm blogları çekip, sonra memory'de sıralıyoruz
         // (EF Core, Include edilmiş collection'ın Count'ını OrderBy içinde kullanamaz)
         var allBlogs = await context.Blogs
@@ -16,11 +16,12 @@ public class BannerViewComponent(ApplicationDbContext context) : ViewComponent
                                     .Include(b => b.Comments)
                                     .ToListAsync();
 
-        // Memory'de yorum sayısına göre sırala ve en çok yorum alan 6 blogu al
+        // Memory'de yorum sayısına göre sırala ve en çok yorum alan ilk 3 blogu al
+        // Slider'da banner-item görsellerini kullandığımız için ImageUrl kontrolüne gerek yok
         var blogs = allBlogs
                     .OrderByDescending(b => b.Comments?.Count ?? 0)
                     .ThenByDescending(b => b.CreatedOn)
-                    .Take(6)
+                    .Take(3)
                     .ToList();
 
         return View(blogs);

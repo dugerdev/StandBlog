@@ -76,7 +76,22 @@ public class AccountController(
             {
                 var signinResult = await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
 
-                if (signinResult.Succeeded) return RedirectToAction("Index", "Home");
+                if (signinResult.Succeeded)
+                {
+                    // Admin rolü kontrolü
+                    var isAdmin = await userManager.IsInRoleAsync(user, "Admin");
+                    if (isAdmin)
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "Dashboard" });
+                    }
+                    else
+                    {
+                        // Admin değilse public home'a yönlendir
+                        await signInManager.SignOutAsync();
+                        ModelState.AddModelError(string.Empty, "You do not have permission to access the dashboard.");
+                        return View(model);
+                    }
+                }
             }
 
             ModelState.AddModelError(string.Empty, "Email or Password not valid.");
@@ -88,9 +103,11 @@ public class AccountController(
         return View(model);
     }
 
+    [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Logout()
     {
         await signInManager.SignOutAsync();
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "Home", new { area = "" });
     }
 }

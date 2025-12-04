@@ -14,7 +14,26 @@
                                     <div class="blog-post">
                                         <div class="blog-thumb">
                                             <a asp-controller="Blogs" asp-action="Detail" asp-route-id="@item.Id">
-                                                <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "~/assets/images/blog-thumb-01.jpg" : item.ImageUrl)" alt="@item.Title">
+                                                @{
+                                                    string imagePath;
+                                                    if (string.IsNullOrEmpty(item.ImageUrl))
+                                                    {
+                                                        imagePath = "/assets/images/blog-thumb-01.jpg";
+                                                    }
+                                                    else if (item.ImageUrl.StartsWith("~/"))
+                                                    {
+                                                        imagePath = item.ImageUrl.Replace("~/", "/").Replace("blog-post-", "blog-thumb-");
+                                                    }
+                                                    else if (item.ImageUrl.StartsWith("/"))
+                                                    {
+                                                        imagePath = item.ImageUrl.Replace("blog-post-", "blog-thumb-");
+                                                    }
+                                                    else
+                                                    {
+                                                        imagePath = "/assets/images/" + item.ImageUrl.Replace("blog-post-", "blog-thumb-");
+                                                    }
+                                                }
+                                                <img src="@imagePath" alt="@item.Title">
                                             </a>
                                         </div>
                                         <div class="down-content">

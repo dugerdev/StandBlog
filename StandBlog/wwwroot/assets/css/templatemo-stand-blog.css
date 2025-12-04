@@ -33,7 +33,8 @@ h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
 }
 
-.main-button a {
+.main-button a,
+.main-button button {
 	display: inline-block;
 	background-color: #f48840;
 	color: #fff;
@@ -42,10 +43,102 @@ h1,h2,h3,h4,h5,h6 {
 	padding: 12px 20px;
 	text-transform: uppercase;
 	transition: all .3s;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	text-decoration: none;
 }
 
-.main-button a:hover {
+.main-button a:hover,
+.main-button button:hover {
 	background-color: #fb9857;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(244, 136, 64, 0.3);
+}
+
+/* Action Buttons */
+.action-buttons {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.btn-action {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 16px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	border-radius: 4px;
+	transition: all 0.3s ease;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.btn-action i {
+	font-size: 11px;
+}
+
+.btn-edit {
+	background-color: #f48840;
+	color: #fff;
+}
+
+.btn-edit:hover {
+	background-color: #fb9857;
+	color: #fff;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(244, 136, 64, 0.3);
+}
+
+.btn-details {
+	background-color: #17a2b8;
+	color: #fff;
+}
+
+.btn-details:hover {
+	background-color: #138496;
+	color: #fff;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+}
+
+.btn-delete {
+	background-color: #dc3545;
+	color: #fff;
+}
+
+.btn-delete:hover {
+	background-color: #c82333;
+	color: #fff;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+@media (max-width: 768px) {
+	.sidebar-heading {
+		flex-direction: column !important;
+		align-items: flex-start !important;
+		gap: 15px;
+	}
+	
+	.action-buttons {
+		flex-direction: column;
+		gap: 5px;
+		width: 100%;
+	}
+	
+	.btn-action {
+		width: 100%;
+		justify-content: center;
+	}
 }
 
 .heading-page {
@@ -880,7 +973,7 @@ footer p a:hover {
 	color: #7a7a7a;
 	outline: none;
 	padding: 0px 15px;
-	margin-bottom: 0px;
+	margin-bottom: 30px;
 	display: block;
 	box-sizing: border-box;
 }
@@ -895,7 +988,7 @@ footer p a:hover {
 	color: #7a7a7a;
 	outline: none;
 	padding: 10px 15px;
-	margin-bottom: 0px;
+	margin-bottom: 30px;
 	height: 180px;
 	max-height: 220px;
 	max-width: 100%;
@@ -903,23 +996,6 @@ footer p a:hover {
 	display: block;
 	box-sizing: border-box;
 	resize: vertical;
-}
-
-.contact-us .contact-form textarea {
-	width: 100%;
-	height: 46px;
-	border: 1px solid #eee;
-	font-size: 13px;
-	text-transform: uppercase;
-	font-weight: 500;
-	color: #7a7a7a;
-	outline: none;
-	padding: 10px 15px;
-	margin-bottom: 30px;
-	height: 180px;
-	max-height: 220px;
-	max-width: 100%;
-	min-width: 160px;
 }
 
 .contact-us .contact-form input::placeholder,
@@ -972,6 +1048,244 @@ footer p a:hover {
 	font-size: 14px;
 	color: #aaa;
 	margin-top: 8px;
+}
+
+.contact-us .contact-form fieldset {
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+	background-color: #fff;
+	border: 1px solid #eee;
+	border-radius: 4px;
+	padding: 30px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.dashboard-card:hover {
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+	transform: translateY(-2px);
+}
+
+.dashboard-card .sidebar-heading {
+	margin-bottom: 20px;
+}
+
+.dashboard-card .content {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.dashboard-card .content p {
+	margin-bottom: 20px;
+	flex-grow: 1;
+}
+
+.dashboard-card .main-button {
+	margin-top: auto;
+}
+
+/* Login Card */
+.login-card {
+	background-color: #fff;
+	border: 1px solid #eee;
+	border-radius: 8px;
+	padding: 50px 40px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	margin: 50px auto;
+	max-width: 500px;
+	transition: all 0.3s ease;
+}
+
+.login-card:hover {
+	box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+}
+
+.login-card .sidebar-heading {
+	margin-bottom: 30px;
+}
+
+.login-card .sidebar-heading h2 {
+	font-size: 28px;
+	letter-spacing: 1px;
+}
+
+.login-card input[type="email"],
+.login-card input[type="password"],
+.login-card input[type="text"] {
+	width: 100% !important;
+	height: 50px !important;
+	border: 2px solid #e0e0e0 !important;
+	border-radius: 6px !important;
+	font-size: 15px !important;
+	text-transform: none !important;
+	font-weight: 400 !important;
+	color: #20232e !important;
+	outline: none !important;
+	padding: 0px 20px !important;
+	margin-bottom: 20px !important;
+	display: block !important;
+	box-sizing: border-box !important;
+	transition: all 0.3s ease !important;
+	background-color: #fff !important;
+	font-family: 'Roboto', sans-serif !important;
+}
+
+.login-card input[type="email"]:focus,
+.login-card input[type="password"]:focus,
+.login-card input[type="text"]:focus {
+	border-color: #f48840 !important;
+	box-shadow: 0 0 0 3px rgba(244, 136, 64, 0.1) !important;
+	background-color: #fff !important;
+}
+
+.login-card input[type="email"]::placeholder,
+.login-card input[type="password"]::placeholder,
+.login-card input[type="text"]::placeholder {
+	color: #999 !important;
+	text-transform: none !important;
+	font-weight: 400 !important;
+	opacity: 1 !important;
+}
+
+.login-card input[type="email"]:hover,
+.login-card input[type="password"]:hover,
+.login-card input[type="text"]:hover,
+.login-card input[type="date"]:hover {
+	border-color: #d0d0d0 !important;
+}
+
+.login-card input[type="date"],
+.login-card .date-input {
+	width: 100% !important;
+	height: 50px !important;
+	border: 2px solid #e0e0e0 !important;
+	border-radius: 6px !important;
+	font-size: 15px !important;
+	text-transform: none !important;
+	font-weight: 400 !important;
+	color: #20232e !important;
+	outline: none !important;
+	padding: 0px 20px !important;
+	margin-bottom: 20px !important;
+	display: block !important;
+	box-sizing: border-box !important;
+	transition: all 0.3s ease !important;
+	background-color: #fff !important;
+	font-family: 'Roboto', sans-serif !important;
+	-webkit-appearance: none !important;
+	-moz-appearance: textfield !important;
+	appearance: none !important;
+}
+
+.login-card input[type="date"]:focus,
+.login-card .date-input:focus {
+	border-color: #f48840 !important;
+	box-shadow: 0 0 0 3px rgba(244, 136, 64, 0.1) !important;
+	background-color: #fff !important;
+}
+
+.login-card input[type="date"]::-webkit-calendar-picker-indicator {
+	cursor: pointer;
+	opacity: 0.6;
+	transition: opacity 0.3s ease;
+}
+
+.login-card input[type="date"]::-webkit-calendar-picker-indicator:hover {
+	opacity: 1;
+}
+
+.login-card input[type="date"]::-webkit-inner-spin-button,
+.login-card input[type="date"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	appearance: none;
+	margin: 0;
+}
+
+.login-card .main-button button {
+	width: 100%;
+	min-width: 200px;
+	padding: 14px 30px;
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	border-radius: 4px;
+	transition: all 0.3s ease;
+}
+
+.login-card .main-button button:hover {
+	background-color: #fb9857;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(244, 136, 64, 0.3);
+}
+
+/* Alert Messages */
+.alert {
+	padding: 12px 20px;
+	border-radius: 4px;
+	margin-bottom: 20px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+}
+
+.alert-success {
+	background-color: #d4edda;
+	border: 1px solid #c3e6cb;
+	color: #155724;
+}
+
+.alert-danger {
+	background-color: #f8d7da;
+	border: 1px solid #f5c6cb;
+	color: #721c24;
+}
+
+.alert i {
+	font-size: 16px;
+}
+
+@media (max-width: 768px) {
+	.login-card {
+		padding: 40px 30px;
+		margin: 30px auto;
+	}
+	
+	.login-card .sidebar-heading h2 {
+		font-size: 24px;
+	}
+}
+
+.contact-us .contact-form .text-danger {
+	font-size: 12px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	display: block;
+}
+
+.contact-us .contact-form .validation-summary-errors {
+	margin-bottom: 20px;
+	padding: 10px;
+	background-color: #fff3cd;
+	border: 1px solid #ffc107;
+	border-radius: 4px;
+}
+
+.contact-us .contact-form .validation-summary-errors ul {
+	margin: 0;
+	padding-left: 20px;
 }
 
 

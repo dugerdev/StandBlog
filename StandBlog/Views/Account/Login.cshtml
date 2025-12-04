@@ -1,4 +1,21 @@
-﻿@model StandBlog.Areas.Dashboard.Models.LoginViewModel
+@model StandBlog.Areas.Dashboard.Models.LoginViewModel
+
+<!-- Banner Starts Here -->
+<div class="heading-page header-text">
+    <section class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-content">
+                        <h4>login</h4>
+                        <h2>welcome back!</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Banner Ends Here -->
 
 <section class="blog-posts">
     <div class="container">
@@ -12,11 +29,23 @@
                                     <h2>Login</h2>
                                 </div>
                                 <div class="content">
-                                    <form asp-area="Dashboard"
-                                          asp-controller="Account"
+                                    @if (TempData["SuccessMessage"] != null)
+                                    {
+                                        <div class="alert alert-success">
+                                            <i class="fa fa-check-circle"></i> @TempData["SuccessMessage"]
+                                        </div>
+                                    }
+                                    @if (TempData["ErrorMessage"] != null)
+                                    {
+                                        <div class="alert alert-danger">
+                                            <i class="fa fa-exclamation-circle"></i> @TempData["ErrorMessage"]
+                                        </div>
+                                    }
+                                    <form asp-controller="Account"
                                           asp-action="Login"
                                           method="post">
                                         @Html.AntiForgeryToken()
+                                        <input type="hidden" name="returnUrl" value="@ViewData["ReturnUrl"]" />
 
                                         <div asp-validation-summary="ModelOnly" class="text-danger mb-3 text-center"></div>
 
@@ -50,6 +79,13 @@
                                                 <button type="submit" id="form-submit" style="width: 100%; min-width: 200px;">Login</button>
                                             </div>
                                         </fieldset>
+
+                                        <div style="text-align: center; margin-top: 20px;">
+                                            <p style="color: #7a7a7a; font-size: 14px;">
+                                                Don't have an account? 
+                                                <a asp-controller="Account" asp-action="Register" style="color: #f48840; text-decoration: underline;">Register here</a>
+                                            </p>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -64,3 +100,4 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+

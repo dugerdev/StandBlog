@@ -1,26 +1,46 @@
 ﻿@model Comment
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<StandBlog.Models.Entities.ApplicationUser> UserManager
 
-<div class="sidebar-item submit-comment">
+@{
+    var isAuthenticated = User?.Identity?.IsAuthenticated ?? false;
+}
+
+@if (isAuthenticated)
+{
+    var user = await UserManager.GetUserAsync(User);
+    var userName = user != null ? $"{user.FirstName} {user.LastName}" : "";
+    var userEmail = user?.Email ?? "";
+
+    <div class="sidebar-item submit-comment">
     <div class="sidebar-heading">
         <h2>Your comment</h2>
     </div>
     <div class="content">
         <form asp-controller="Blogs"
               asp-action="CommentAdd"
-              method="post">
+              method="post"
+              id="commentForm">
             @Html.AntiForgeryToken()
             <div class="row">
                 <div asp-validation-summary="ModelOnly"></div>
                 <input asp-for="BlogId" type="hidden" />
                 <div class="col-md-6 col-sm-12">
                     <fieldset>
-                        <input asp-for="Name" placeholder="Your name" required />
+                        <input asp-for="Name" 
+                               placeholder="Your name" 
+                               value="@userName"
+                               required />
                         <span asp-validation-for="Name"></span>
                     </fieldset>
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <fieldset>
-                        <input asp-for="Email" type="email" placeholder="Your email" required />
+                        <input asp-for="Email" 
+                               type="email" 
+                               placeholder="Your email" 
+                               value="@userEmail"
+                               required />
                         <span asp-validation-for="Email"></span>
                     </fieldset>
                 </div>
@@ -39,3 +59,19 @@
         </form>
     </div>
 </div>
+}
+else
+{
+    <div class="sidebar-item submit-comment">
+        <div class="sidebar-heading">
+            <h2>Your comment</h2>
+        </div>
+        <div class="content">
+            <p style="color: #7a7a7a; margin-bottom: 20px;">
+                Please <a asp-controller="Account" asp-action="Login" style="color: #f48840; text-decoration: underline;">login</a> 
+                or <a asp-controller="Account" asp-action="Register" style="color: #f48840; text-decoration: underline;">register</a> 
+                to leave a comment.
+            </p>
+        </div>
+    </div>
+}

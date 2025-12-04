@@ -1,0 +1,218 @@
+===========================================
+STAND BLOG - SUNUM NOTLARI
+İş Görüşmesi İçin PowerPoint Slayt Yapısı
+===========================================
+
+SLIDE 1: BAŞLIK SLIDE
+---------------------
+- StandBlog - Blog Management Platform
+- İsim Soyisim
+- Tarih
+- Logo (varsa)
+
+SLIDE 2: İÇİNDEKİLER
+--------------------
+- Proje Özeti
+- Teknoloji Stack
+- Mimari Yapı
+- Özellikler
+- Güvenlik
+- Teknik Detaylar
+- Sonuç
+
+SLIDE 3: PROJE ÖZETİ
+--------------------
+- StandBlog nedir?
+- Proje amacı
+- Temel özellikler (bullet points)
+- Görsel: Ana sayfa screenshot
+
+SLIDE 4: TEKNOLOJİ STACK - BACKEND
+-----------------------------------
+- .NET 9.0
+- ASP.NET Core MVC
+- Entity Framework Core 9.0
+- SQL Server
+- Her biri için kısa açıklama
+
+SLIDE 5: TEKNOLOJİ STACK - FRONTEND & GÜVENLİK
+-----------------------------------------------
+- Bootstrap 5
+- jQuery
+- Font Awesome
+- ASP.NET Core Identity
+- FluentValidation
+- Her biri için kısa açıklama
+
+SLIDE 6: MİMARİ YAPı
+--------------------
+- Katmanlı mimari diyagramı
+- Presentation Layer
+- Business Logic Layer
+- Data Access Layer
+- Data Layer
+- Design Patterns kullanımı
+
+SLIDE 7: PUBLIC SITE ÖZELLİKLERİ
+--------------------------------
+- Blog yönetimi
+- Kullanıcı işlemleri
+- Yorum sistemi
+- İletişim formu
+- Görsel: Public site screenshot
+
+SLIDE 8: ADMIN DASHBOARD ÖZELLİKLERİ
+------------------------------------
+- Dashboard overview
+- Blog yönetimi
+- Kategori yönetimi
+- Etiket yönetimi
+- Yorum yönetimi
+- İletişim yönetimi
+- Görsel: Admin dashboard screenshot
+
+SLIDE 9: GÜVENLİK - AUTHENTICATION
+-----------------------------------
+- ASP.NET Core Identity
+- Email/Password girişi
+- Remember Me özelliği
+- Güvenli şifre hash'leme
+- Görsel: Login sayfası
+
+SLIDE 10: GÜVENLİK - AUTHORIZATION
+-----------------------------------
+- Role-Based Access Control (RBAC)
+- Admin ve User rolleri
+- Admin paneli erişim kontrolü
+- Public site erişimi
+- Yorum yapma kontrolü
+
+SLIDE 11: GÜVENLİK - DATA PROTECTION
+------------------------------------
+- CSRF Protection
+- Input Validation
+- SQL Injection Protection
+- XSS Protection
+- Security Best Practices
+
+SLIDE 12: TEKNİK DETAYLAR - EF CORE
+------------------------------------
+- Code First Approach
+- Migrations
+- Soft Delete
+- Relationships
+- Eager Loading
+
+SLIDE 13: TEKNİK DETAYLAR - VALIDATION & COMPONENTS
+----------------------------------------------------
+- FluentValidation kullanımı
+- View Components
+- Seed Data
+- Örnek kod snippet'leri
+
+SLIDE 14: PROJE YAPISI
+-----------------------
+- Klasör yapısı diyagramı
+- Areas/Dashboard
+- Controllers
+- Models
+- Views
+- wwwroot
+
+SLIDE 15: DATABASE SCHEMA
+--------------------------
+- Entity ilişkileri
+- Tablolar listesi
+- İlişki diyagramı (ERD)
+
+SLIDE 16: UI/UX ÖZELLİKLERİ
+----------------------------
+- Responsive Design
+- User Experience
+- Template Integration
+- Görsel: Mobile ve Desktop görünümleri
+
+SLIDE 17: PROJE İSTATİSTİKLERİ
+------------------------------
+- Kod metrikleri
+- Controller sayısı
+- View sayısı
+- Entity sayısı
+- Özellik sayısı
+
+SLIDE 18: GELİŞTİRME SÜRECİ
+---------------------------
+- Clean Code Principles
+- Best Practices
+- Error Handling
+- Performance optimizasyonları
+
+SLIDE 19: SONUÇ - BAŞARILAR
+---------------------------
+- Modern Teknoloji Stack
+- Güvenli Mimari
+- Kullanıcı Dostu Arayüz
+- Ölçeklenebilir Yapı
+- Profesyonel Kod Kalitesi
+
+SLIDE 20: SONUÇ - ÖĞRENİLEN TEKNOLOJİLER
+----------------------------------------
+- ASP.NET Core MVC
+- Entity Framework Core
+- ASP.NET Core Identity
+- FluentValidation
+- Bootstrap 5
+- Razor Views
+
+SLIDE 21: GELECEK GELİŞTİRMELER
+-------------------------------
+- API entegrasyonu
+- Real-time notifications
+- Advanced search
+- Image upload
+- Email notifications
+- Analytics dashboard
+
+SLIDE 22: TEŞEKKÜRLER
+----------------------
+- Sorularınız için hazırım
+- İletişim bilgileri
+- Teşekkür mesajı
+
+===========================================
+SUNUM İPUÇLARI
+===========================================
+
+1. Her slide için 2-3 dakika ayırın
+2. Görseller ekleyin (screenshots)
+3. Kod örnekleri gösterin
+4. Canlı demo hazırlayın
+5. Sorulara hazırlıklı olun
+6. Proje GitHub linkini paylaşın (varsa)
+7. Pozitif ve özgüvenli olun
+
+===========================================
+DEMO SENARYOSU
+===========================================
+
+1. Public site gösterimi (2 dk)
+   - Ana sayfa
+   - Blog listesi
+   - Blog detay
+   - Yorum yapma
+
+2. Admin dashboard gösterimi (3 dk)
+   - Login
+   - Dashboard overview
+   - Blog oluşturma
+   - Kategori yönetimi
+
+3. Güvenlik gösterimi (1 dk)
+   - Admin olmayan kullanıcı ile dashboard erişimi
+   - Yorum yapma kontrolü
+
+TOPLAM DEMO SÜRESİ: 6 dakika
+TOPLAM SUNUM SÜRESİ: 15-20 dakika
+
+===========================================
+

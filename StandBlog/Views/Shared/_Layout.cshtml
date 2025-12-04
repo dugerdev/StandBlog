@@ -40,28 +40,66 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")">
+                        @{
+                            var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+                            var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+                        }
+                        <li class="nav-item @(currentController == "Home" && currentAction == "Index" ? "active" : "")">
                             <a class="nav-link"
                                asp-controller="Home"
                                asp-action="Index">
                                 Home
-                                @if (ViewContext.RouteData.Values["controller"]?.ToString() == "Home")
+                                @if (currentController == "Home" && currentAction == "Index")
                                 {
                                     <span class="sr-only">(current)</span>
                                 }
                             </a>
                         </li>
-                        <li class="nav-item @(ViewContext.RouteData.Values["controller"]?.ToString() == "Contact" ? "active" : "")">
+                        <li class="nav-item @(currentController == "About" ? "active" : "")">
+                            <a class="nav-link"
+                               asp-controller="About"
+                               asp-action="Index">
+                                About Us
+                            </a>
+                        </li>
+                        <li class="nav-item @(currentController == "Blogs" && currentAction == "Index" ? "active" : "")">
+                            <a class="nav-link"
+                               asp-controller="Blogs"
+                               asp-action="Index">
+                                Blog Entries
+                            </a>
+                        </li>
+                        <li class="nav-item @(currentController == "Contact" ? "active" : "")">
                             <a class="nav-link"
                                asp-controller="Contact"
                                asp-action="Us">
                                 Contact Us
-                                @if (ViewContext.RouteData.Values["controller"]?.ToString() == "Contact")
-                                {
-                                    <span class="sr-only">(current)</span>
-                                }
                             </a>
                         </li>
+                        @{
+                            var isAuthenticated = User?.Identity?.IsAuthenticated ?? false;
+                        }
+                        @if (isAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <form asp-controller="Account" asp-action="Logout" method="post" style="display: inline;">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="nav-link" style="background: none; border: none; cursor: pointer; color: #1e1e1e; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item @(currentController == "Account" && currentAction == "Login" ? "active" : "")">
+                                <a class="nav-link"
+                                   asp-controller="Account"
+                                   asp-action="Login">
+                                    Login
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

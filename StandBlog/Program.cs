@@ -14,8 +14,15 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 
 builder.Services.ConfigureApplicationCookie(options => 
 {
-    options.LoginPath = "/Dashboard/Account/Login";
+    options.LoginPath = "/Account/Login";
     options.LogoutPath = "/Home/Index";
+    options.AccessDeniedPath = "/Account/Login";
+});
+
+// Authorization policies
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
 });
 
 builder.Services.AddControllersWithViews();

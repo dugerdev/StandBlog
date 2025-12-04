@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace StandBlog.Areas.Dashboard.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Admin")]
 [Area("Dashboard")]
 public class HomeController
     : Controller

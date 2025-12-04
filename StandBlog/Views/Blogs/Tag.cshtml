@@ -16,7 +16,26 @@
                                         <div class="blog-post">
                                             <div class="blog-thumb">
                                                 <a asp-controller="Blogs" asp-action="Detail" asp-route-id="@item.Blog.Id">
-                                                    <img src="@(string.IsNullOrEmpty(item.Blog.ImageUrl) ? "~/assets/images/blog-thumb-01.jpg" : item.Blog.ImageUrl)" alt="@item.Blog.Title">
+                                                    @{
+                                                        string imagePath;
+                                                        if (string.IsNullOrEmpty(item.Blog.ImageUrl))
+                                                        {
+                                                            imagePath = "/assets/images/blog-thumb-01.jpg";
+                                                        }
+                                                        else if (item.Blog.ImageUrl.StartsWith("~/"))
+                                                        {
+                                                            imagePath = item.Blog.ImageUrl.Replace("~/", "/").Replace("blog-post-", "blog-thumb-");
+                                                        }
+                                                        else if (item.Blog.ImageUrl.StartsWith("/"))
+                                                        {
+                                                            imagePath = item.Blog.ImageUrl.Replace("blog-post-", "blog-thumb-");
+                                                        }
+                                                        else
+                                                        {
+                                                            imagePath = "/assets/images/" + item.Blog.ImageUrl.Replace("blog-post-", "blog-thumb-");
+                                                        }
+                                                    }
+                                                    <img src="@imagePath" alt="@item.Blog.Title">
                                                 </a>
                                             </div>
                                             <div class="down-content">

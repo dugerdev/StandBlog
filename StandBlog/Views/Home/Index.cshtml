@@ -20,7 +20,30 @@
                                 <div class="blog-post">
                                     <div class="blog-thumb">
                                         <a asp-controller="Blogs" asp-action="Detail" asp-route-id="@item.Id">
-                                            <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "~/assets/images/blog-post-01.jpg" : item.ImageUrl)" alt="@item.Title">
+                                            @{
+                                                // Home sayfasında blog-post görselleri kullan
+                                                string imagePath = "/assets/images/blog-post-01.jpg";
+                                                if (!string.IsNullOrEmpty(item.ImageUrl))
+                                                {
+                                                    if (item.ImageUrl.StartsWith("/assets/images/"))
+                                                    {
+                                                        imagePath = item.ImageUrl;
+                                                    }
+                                                    else if (item.ImageUrl.StartsWith("/"))
+                                                    {
+                                                        imagePath = item.ImageUrl;
+                                                    }
+                                                    else if (item.ImageUrl.StartsWith("~/"))
+                                                    {
+                                                        imagePath = item.ImageUrl.Replace("~/", "/");
+                                                    }
+                                                    else
+                                                    {
+                                                        imagePath = "/assets/images/" + item.ImageUrl;
+                                                    }
+                                                }
+                                            }
+                                            <img src="@imagePath" alt="@item.Title">
                                         </a>
                                     </div>
                                     <div class="down-content">
@@ -44,12 +67,24 @@
                                                 <div class="col-6">
                                                     @await Component.InvokeAsync("BlogTags", new { id = item.Id })
                                                 </div>
+                                                <div class="col-6">
+                                                    <ul class="post-share">
+                                                        <li><i class="fa fa-share-alt"></i></li>
+                                                        <li><a href="#">Facebook</a>,</li>
+                                                        <li><a href="#">Twitter</a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 </div>
                             }
+                            <div class="col-lg-12">
+                                <div class="main-button">
+                                    <a asp-controller="Blogs" asp-action="Index">View All Posts</a>
+                                </div>
+                            </div>
                         }
                         else
                         {

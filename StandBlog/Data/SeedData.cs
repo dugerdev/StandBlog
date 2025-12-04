@@ -23,6 +23,50 @@ namespace StandBlog.Data
                 await context.Database.EnsureCreatedAsync();
             }
 
+            // Seed Roles
+            if (!await roleManager.RoleExistsAsync("Admin"))
+            {
+                await roleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+            if (!await roleManager.RoleExistsAsync("User"))
+            {
+                await roleManager.CreateAsync(new IdentityRole("User"));
+            }
+
+            // Seed Admin User
+            var adminEmail = "admin@standblog.com";
+            var adminUser = await userManager.FindByEmailAsync(adminEmail);
+            if (adminUser == null)
+            {
+                adminUser = new ApplicationUser
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    FirstName = "Admin",
+                    LastName = "User",
+                    DateOfBirth = DateOnly.FromDateTime(DateTime.Now.AddYears(-30)),
+                    Email = adminEmail,
+                    UserName = "admin",
+                    EmailConfirmed = true,
+                    LastLogin = DateTimeOffset.Now,
+                    IsActive = true,
+                    CreatedOn = DateTimeOffset.Now
+                };
+
+                var result = await userManager.CreateAsync(adminUser, "Admin123!");
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(adminUser, "Admin");
+                }
+            }
+            else
+            {
+                // Ensure admin user has Admin role
+                if (!await userManager.IsInRoleAsync(adminUser, "Admin"))
+                {
+                    await userManager.AddToRoleAsync(adminUser, "Admin");
+                }
+            }
+
             // Seed Categories
             if (!context.Categories.Any())
             {
@@ -64,10 +108,44 @@ namespace StandBlog.Data
             }
 
             // Seed Blogs
+            var existingCategories = context.Categories.ToList();
+            var existingTags = context.Tags.ToList();
+            
+            // Mevcut blogların ImageUrl'lerini güncelle
+            // Önce "~/" ile başlayan ImageUrl'leri "/" ile değiştir
+            var blogsWithTilde = context.Blogs.Where(b => !string.IsNullOrEmpty(b.ImageUrl) && b.ImageUrl.StartsWith("~/")).ToList();
+            if (blogsWithTilde.Any())
+            {
+                foreach (var blog in blogsWithTilde)
+                {
+                    blog.ImageUrl = blog.ImageUrl.Replace("~/", "/");
+                }
+                await context.SaveChangesAsync();
+            }
+            
+            // ImageUrl'i boş olan veya yanlış formatta olan blogları güncelle
+            // Sadece mevcut görselleri kullan (blog-post-01, 02, 03)
+            var allBlogs = context.Blogs.ToList();
+            var imageUrls = new[]
+            {
+                "/assets/images/blog-post-01.jpg",
+                "/assets/images/blog-post-02.jpg",
+                "/assets/images/blog-post-03.jpg"
+            };
+            
+            var blogsToUpdate = allBlogs.Where(b => string.IsNullOrEmpty(b.ImageUrl) || !b.ImageUrl.StartsWith("/assets/images/") || b.ImageUrl.Contains("blog-post-04") || b.ImageUrl.Contains("blog-post-05") || b.ImageUrl.Contains("blog-post-06")).ToList();
+            if (blogsToUpdate.Any())
+            {
+                for (int i = 0; i < blogsToUpdate.Count; i++)
+                {
+                    var imageIndex = i % imageUrls.Length;
+                    blogsToUpdate[i].ImageUrl = imageUrls[imageIndex];
+                }
+                await context.SaveChangesAsync();
+            }
+            
             if (!context.Blogs.Any())
             {
-                var categories = context.Categories.ToList();
-                var tags = context.Tags.ToList();
 
                 var blogs = new List<Blog>
                 {
@@ -89,8 +167,8 @@ namespace StandBlog.Data
 
                         <h3>Getting Started</h3>
                         <p>To get started with ASP.NET Core 9.0, you'll need to install the latest .NET SDK and create a new project using the dotnet CLI or Visual Studio.</p>",
-                        ImageUrl = "~/assets/images/blog-post-01.jpg",
-                        CategoryId = categories.First(c => c.Name == "Web Development").Id,
+                        ImageUrl = "/assets/images/blog-post-01.jpg",
+                        CategoryId = existingCategories.First(c => c.Name == "Web Development").Id,
                         CreatedOn = DateTime.Now.AddDays(-5)
                     },
                     new Blog
@@ -109,8 +187,8 @@ namespace StandBlog.Data
                             <li>Optimize queries to avoid N+1 problems</li>
                             <li>Use migrations for database schema changes</li>
                         </ul>",
-                        ImageUrl = "~/assets/images/blog-post-02.jpg",
-                        CategoryId = categories.First(c => c.Name == "Programming").Id,
+                        ImageUrl = "/assets/images/blog-post-02.jpg",
+                        CategoryId = existingCategories.First(c => c.Name == "Programming").Id,
                         CreatedOn = DateTime.Now.AddDays(-3)
                     },
                     new Blog
@@ -124,8 +202,8 @@ namespace StandBlog.Data
 
                         <h3>Project Setup</h3>
                         <p>Setting up the project involves creating both frontend and backend projects, configuring CORS, and implementing authentication and authorization.</p>",
-                        ImageUrl = "~/assets/images/blog-post-03.jpg",
-                        CategoryId = categories.First(c => c.Name == "Web Development").Id,
+                        ImageUrl = "/assets/images/blog-post-03.jpg",
+                        CategoryId = existingCategories.First(c => c.Name == "Web Development").Id,
                         CreatedOn = DateTime.Now.AddDays(-1)
                     },
                     new Blog
@@ -143,8 +221,8 @@ namespace StandBlog.Data
                             <li>Unsupervised Learning</li>
                             <li>Reinforcement Learning</li>
                         </ul>",
-                        ImageUrl = "~/assets/images/blog-post-04.jpg",
-                        CategoryId = categories.First(c => c.Name == "Data Science").Id,
+                        ImageUrl = "/assets/images/blog-post-01.jpg",
+                        CategoryId = existingCategories.First(c => c.Name == "Data Science").Id,
                         CreatedOn = DateTime.Now.AddDays(-7)
                     },
                     new Blog
@@ -162,8 +240,8 @@ namespace StandBlog.Data
                         </ul>
 
                         <p>With Xamarin, you can write your business logic once and share it across all platforms, while still delivering native user experiences.</p>",
-                        ImageUrl = "~/assets/images/blog-post-05.jpg",
-                        CategoryId = categories.First(c => c.Name == "Mobile Development").Id,
+                        ImageUrl = "/assets/images/blog-post-02.jpg",
+                        CategoryId = existingCategories.First(c => c.Name == "Mobile Development").Id,
                         CreatedOn = DateTime.Now.AddDays(-10)
                     },
                     new Blog
@@ -177,8 +255,8 @@ namespace StandBlog.Data
 
                         <h3>Monitoring and Logging</h3>
                         <p>Proper monitoring and logging are crucial for maintaining application health and performance in production environments.</p>",
-                        ImageUrl = "~/assets/images/blog-post-06.jpg",
-                        CategoryId = categories.First(c => c.Name == "Technology").Id,
+                        ImageUrl = "/assets/images/blog-post-03.jpg",
+                        CategoryId = existingCategories.First(c => c.Name == "Technology").Id,
                         CreatedOn = DateTime.Now.AddDays(-2)
                     }
                 };
@@ -192,7 +270,7 @@ namespace StandBlog.Data
 
                 foreach (var blog in blogList)
                 {
-                    var randomTags = tags.OrderBy(x => Guid.NewGuid()).Take(3).ToList();
+                    var randomTags = existingTags.OrderBy(x => Guid.NewGuid()).Take(3).ToList();
                     foreach (var tag in randomTags)
                     {
                         blogTags.Add(new BlogTag

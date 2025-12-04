@@ -6,7 +6,7 @@ using StandBlog.Models.Entities;
 
 namespace StandBlog.Areas.Dashboard.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Admin")]
 [Area("Dashboard")]
 public class CategoriesController : Controller
 {

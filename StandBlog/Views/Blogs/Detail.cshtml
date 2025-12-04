@@ -20,6 +20,23 @@
 }
 else
 {
+<!-- Banner Starts Here -->
+<div class="heading-page header-text">
+    <section class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-content">
+                        <h4>Post Details</h4>
+                        <h2>Single blog post</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Banner Ends Here -->
+
 <section class="blog-posts grid-system">
     <div class="container">
         <div class="row">
@@ -30,7 +47,26 @@ else
                         <div class="col-lg-12">
                             <div class="blog-post">
                                 <div class="blog-thumb">
-                                    <img src="@(string.IsNullOrEmpty(Model.ImageUrl) ? "~/assets/images/blog-post-02.jpg" : Model.ImageUrl)" alt="@Model.Title">
+                                    @{
+                                        string imagePath;
+                                        if (string.IsNullOrEmpty(Model.ImageUrl))
+                                        {
+                                            imagePath = "/assets/images/blog-post-02.jpg";
+                                        }
+                                        else if (Model.ImageUrl.StartsWith("~/"))
+                                        {
+                                            imagePath = Model.ImageUrl.Replace("~/", "/");
+                                        }
+                                        else if (Model.ImageUrl.StartsWith("/"))
+                                        {
+                                            imagePath = Model.ImageUrl;
+                                        }
+                                        else
+                                        {
+                                            imagePath = "/assets/images/" + Model.ImageUrl;
+                                        }
+                                    }
+                                    <img src="@imagePath" alt="@Model.Title">
                                 </div>
                                 <div class="down-content">
                                     <span>@Model.Category?.Name</span>
@@ -46,6 +82,13 @@ else
                                         <div class="row">
                                             <div class="col-6">
                                                 @await Component.InvokeAsync("BlogTags", new { id = Model.Id })
+                                            </div>
+                                            <div class="col-6">
+                                                <ul class="post-share">
+                                                    <li><i class="fa fa-share-alt"></i></li>
+                                                    <li><a href="#">Facebook</a>,</li>
+                                                    <li><a href="#">Twitter</a></li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -77,4 +120,24 @@ else
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    @{
+        var isAuthenticated = User?.Identity?.IsAuthenticated ?? false;
+    }
+    @if (!isAuthenticated)
+    {
+        <script>
+            // Form gönderimini engelle - sadece giriş yapmamış kullanıcılar için
+            document.addEventListener('DOMContentLoaded', function() {
+                var commentForm = document.getElementById('commentForm');
+                if (commentForm) {
+                    commentForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        alert('Please login to leave a comment.');
+                        window.location.href = '@Url.Action("Login", "Account")';
+                        return false;
+                    });
+                }
+            });
+        </script>
+    }
 }
