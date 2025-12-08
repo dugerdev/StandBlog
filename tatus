@@ -1,0 +1,36 @@
+ .vs/StandBlog/ColorByRegexConfig.txt               |   10 [32m+[m
+ .vs/StandBlog/DesignTimeBuild/.dtbcache.v2         |  Bin [31m0[m -> [32m226695[m bytes
+ .vs/StandBlog/config/applicationhost.config        | 1011 [32m+++++++++++++++[m
+ .vs/StandBlog/v17/.futdcache.v2                    |  Bin [31m0[m -> [32m416[m bytes
+ .vs/StandBlog/v17/.suo                             |  Bin [31m0[m -> [32m348672[m bytes
+ .vs/StandBlog/v17/DocumentLayout.backup.json       | 1293 [32m+++++++++++++++++++[m
+ .vs/StandBlog/v17/DocumentLayout.json              | 1294 [32m++++++++++++++++++++[m
+ Img/localhost_7238_.png                            |  Bin [31m5730426[m -> [32m0[m bytes
+ Img/localhost_7238_About.png                       |  Bin [31m2128890[m -> [32m0[m bytes
+ Img/localhost_7238_Account_Login.png               |  Bin [31m712475[m -> [32m0[m bytes
+ Img/localhost_7238_Blogs.png                       |  Bin [31m2964792[m -> [32m0[m bytes
+ ...Detail_52fd71a9-6216-4fbe-be78-b27d28edc2c2.png |  Bin [31m1762647[m -> [32m0[m bytes
+ Img/localhost_7238_Contact_Us.png                  |  Bin [31m758584[m -> [32m0[m bytes
+ Img/localhost_7238_Dashboard.png                   |  Bin [31m130725[m -> [32m0[m bytes
+ Img/localhost_7238_Dashboard_Blogs.png             |  Bin [31m207126[m -> [32m0[m bytes
+ Img/localhost_7238_Dashboard_Categories.png        |  Bin [31m153842[m -> [32m0[m bytes
+ Img/localhost_7238_Dashboard_Comments.png          |  Bin [31m263114[m -> [32m0[m bytes
+ Img/localhost_7238_Dashboard_Contacts.png          |  Bin [31m142606[m -> [32m0[m bytes
+ Img/localhost_7238_Dashboard_Tags.png              |  Bin [31m209642[m -> [32m0[m bytes
+ .../ApplicationDbContextModelSnapshot.cs           |  621 [32m++++++++++[m
+ StandBlog_Presentation.md                          |  394 [32m++++++[m
+ StandBlog_Presentation_PowerPoint_Outline.txt      |  218 [32m++++[m
+ images/01-homepage.png                             |  Bin [31m3993543[m -> [32m0[m bytes
+ images/02-blog-detail.png                          |  Bin [31m598123[m -> [32m0[m bytes
+ images/03-contact-page.png                         |  Bin [31m121337[m -> [32m0[m bytes
+ images/04-register-page.png                        |  Bin [31m48401[m -> [32m0[m bytes
+ images/05-login-page.png                           |  Bin [31m39246[m -> [32m0[m bytes
+ images/06-admin-dashboard.png                      |  Bin [31m74781[m -> [32m0[m bytes
+ images/07-blog-management.png                      |  Bin [31m144609[m -> [32m0[m bytes
+ images/08-category-management.png                  |  Bin [31m100298[m -> [32m0[m bytes
+ images/09-comment-moderation.png                   |  Bin [31m122686[m -> [32m0[m bytes
+ images/10-contact-management.png                   |  Bin [31m117058[m -> [32m0[m bytes
+ images/11-mobile-homepage.png                      |  Bin [31m3122046[m -> [32m0[m bytes
+ images/12-mobile-blog.png                          |  Bin [31m690795[m -> [32m0[m bytes
+ images/README.md                                   |   45 [31m-[m
+ 35 files changed, 4841 insertions(+), 45 deletions(-)
