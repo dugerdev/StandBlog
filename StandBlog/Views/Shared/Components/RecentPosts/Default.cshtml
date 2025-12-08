@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Blog>
+
+<div class="sidebar-item recent-posts">
+    <div class="sidebar-heading">
+        <h2>Recent Posts</h2>
+    </div>
+    <div class="content">
+        <ul>
+            @foreach (Blog item in Model)
+            {
+                <li>
+                    <a asp-controller="Blogs"
+                       asp-action="Detail"
+                       asp-route-id="@item.Id">
+                        <h5>@item.Title</h5>
+                        <span>@item.CreatedOn.ToLocalTime().ToString("MMM dd, yyyy")</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

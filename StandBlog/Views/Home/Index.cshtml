@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Blog>
+
+<!-- Banner Starts Here -->
+@await Component.InvokeAsync("Banner")
+<!-- Banner Ends Here -->
+
+<section class="blog-posts">
+    <div class="container">
+        <div class="row">
+
+            <!-- Blog listesi -->
+            <div class="col-lg-8">
+                <div class="all-blog-posts">
+                    <div class="row">
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-lg-12">
+                                <div class="blog-post">
+                                    <div class="blog-thumb">
+                                        <a asp-controller="Blogs" asp-action="Detail" asp-route-id="@item.Id">
+                                            @{
+                                                // Home sayfasında blog-post görselleri kullan
+                                                string imagePath = "/assets/images/blog-post-01.jpg";
+                                                if (!string.IsNullOrEmpty(item.ImageUrl))
+                                                {
+                                                    if (item.ImageUrl.StartsWith("/assets/images/"))
+                                                    {
+                                                        imagePath = item.ImageUrl;
+                                                    }
+                                                    else if (item.ImageUrl.StartsWith("/"))
+                                                    {
+                                                        imagePath = item.ImageUrl;
+                                                    }
+                                                    else if (item.ImageUrl.StartsWith("~/"))
+                                                    {
+                                                        imagePath = item.ImageUrl.Replace("~/", "/");
+                                                    }
+                                                    else
+                                                    {
+                                                        imagePath = "/assets/images/" + item.ImageUrl;
+                                                    }
+                                                }
+                                            }
+                                            <img src="@imagePath" alt="@item.Title">
+                                        </a>
+                                    </div>
+                                    <div class="down-content">
+                                        <span>@item.Category?.Name</span>
+                                        <a asp-controller="Blogs"
+                                           asp-action="Detail"
+                                           asp-route-id="@item.Id">
+                                            <h4>@item.Title</h4>
+                                        </a>
+                                        <ul class="post-info">
+                                            <li><a href="#">@item.CreatedOn.ToLocalTime().ToString("MMMM dd, yyyy")</a></li>
+                                            <li><a href="#">@(item.Comments?.Count ?? 0) Comments</a></li>
+                                        </ul>
+                                        @{
+                                            var plainText = System.Text.RegularExpressions.Regex.Replace(item.Post ?? "", "<.*?>", "");
+                                            var preview = plainText.Length > 255 ? plainText.Substring(0, 255) + " ..." : plainText;
+                                        }
+                                        <p>@preview</p>
+                                        <div class="post-options">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    @await Component.InvokeAsync("BlogTags", new { id = item.Id })
+                                                </div>
+                                                <div class="col-6">
+                                                    <ul class="post-share">
+                                                        <li><i class="fa fa-share-alt"></i></li>
+                                                        <li><a href="#">Facebook</a>,</li>
+                                                        <li><a href="#">Twitter</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            }
+                            <div class="col-lg-12">
+                                <div class="main-button">
+                                    <a asp-controller="Blogs" asp-action="Index">View All Posts</a>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-lg-12">
+                                <div class="blog-post">
+                                    <div class="down-content text-center" style="padding: 40px;">
+                                        <h4>No blog posts available</h4>
+                                        <p>Check back later for new content!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <partial name="_Sidebar" />
+            </div>
+
+        </div>
+    </div>
+</section>

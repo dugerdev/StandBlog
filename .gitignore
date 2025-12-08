@@ -1,0 +1,35 @@
+# Build klasörleri
+bin/
+obj/
+out/
+
+# Visual Studio dosyalarý
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider/IDE dosyalarý
+.idea/
+
+# Log ve geçici dosyalar
+*.log
+*.tmp
+*.temp
+
+# Paketler
+*.nupkg
+*.snupkg
+packages/
+
+# Node.js / frontend dosyalarý (varsa)
+node_modules/
+dist/
+
+# Publish / deployment dosyalarý
+*.publish.xml
+
+# Kullanýcýya özel ayarlar
+*.env
+*.local

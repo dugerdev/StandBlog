@@ -1,0 +1,71 @@
+﻿@model IEnumerable<StandBlog.Models.Entities.Comment>
+
+@{
+    ViewData["Title"] = "Comments";
+}
+
+<section class="blog-posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="all-blog-posts">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="sidebar-item">
+                                <div class="sidebar-heading">
+                                    <h2>Comment Management</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="sidebar-item">
+                                <div class="content">
+                                    <table style="width: 100%; border-collapse: collapse;">
+                                        <thead>
+                                            <tr style="border-bottom: 2px solid #eee;">
+                                                <th style="padding: 15px; text-align: left; font-weight: 900; text-transform: uppercase; color: #20232e;">@Html.DisplayNameFor(model => model.Blog)</th>
+                                                <th style="padding: 15px; text-align: left; font-weight: 900; text-transform: uppercase; color: #20232e;">@Html.DisplayNameFor(model => model.Name)</th>
+                                                <th style="padding: 15px; text-align: left; font-weight: 900; text-transform: uppercase; color: #20232e;">@Html.DisplayNameFor(model => model.Email)</th>
+                                                <th style="padding: 15px; text-align: left; font-weight: 900; text-transform: uppercase; color: #20232e;">@Html.DisplayNameFor(model => model.Message)</th>
+                                                <th style="padding: 15px; text-align: left; font-weight: 900; text-transform: uppercase; color: #20232e;">@Html.DisplayNameFor(model => model.CreatedOn)</th>
+                                                <th style="padding: 15px; text-align: right; font-weight: 900; text-transform: uppercase; color: #20232e;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr style="border-bottom: 1px solid #eee;">
+                                                    <td style="padding: 15px; color: #7a7a7a;">@item.Blog?.Title</td>
+                                                    <td style="padding: 15px; color: #7a7a7a;">@item.Name</td>
+                                                    <td style="padding: 15px; color: #7a7a7a;">@item.Email</td>
+                                                    <td style="padding: 15px; color: #7a7a7a; max-width: 250px; overflow: hidden; text-overflow: ellipsis;">@item.Message</td>
+                                                    <td style="padding: 15px; color: #7a7a7a;">@item.CreatedOn.ToString("dd MMM yyyy")</td>
+                                                    <td style="padding: 15px; text-align: right;">
+                                                        <div class="action-buttons">
+                                                            <a asp-action="Details" asp-route-id="@item.Id" class="btn-action btn-details">
+                                                                <i class="fa fa-eye"></i> Details
+                                                            </a>
+                                                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn-action btn-edit">
+                                                                <i class="fa fa-edit"></i> Edit
+                                                            </a>
+                                                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn-action btn-delete">
+                                                                <i class="fa fa-trash"></i> Delete
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

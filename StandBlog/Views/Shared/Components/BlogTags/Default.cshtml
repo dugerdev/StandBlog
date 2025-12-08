@@ -1,0 +1,25 @@
+﻿@model IEnumerable<BlogTag>
+
+<ul class="post-tags">
+    <li><i class="fa fa-tags"></i></li>
+    @if (Model != null && Model.Any())
+    {
+        @foreach (BlogTag item in Model)
+        {
+            @if (item.Tag != null)
+            {
+                <li>
+                    <a asp-controller="Blogs"
+                       asp-action="Tag"
+                       asp-route-id="@item.TagId">
+                        @item.Tag.Name
+                    </a>
+                </li>
+            }
+        }
+    }
+    else
+    {
+        <li><span>No tags</span></li>
+    }
+</ul>

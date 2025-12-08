@@ -1,0 +1,66 @@
+﻿@model StandBlog.Areas.Dashboard.Models.LoginViewModel
+
+<section class="blog-posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="all-blog-posts">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5 col-md-7 col-sm-9">
+                            <div class="sidebar-item contact-form login-card">
+                                <div class="sidebar-heading text-center">
+                                    <h2>Login</h2>
+                                </div>
+                                <div class="content">
+                                    <form asp-area="Dashboard"
+                                          asp-controller="Account"
+                                          asp-action="Login"
+                                          method="post">
+                                        @Html.AntiForgeryToken()
+
+                                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3 text-center"></div>
+
+                                        <fieldset style="margin: 0; padding: 0; border: none;">
+                                            <input asp-for="Email" 
+                                                   type="email" 
+                                                   placeholder="Your Email" 
+                                                   required 
+                                                   class="login-input" />
+                                            <span asp-validation-for="Email" class="text-danger d-block mt-1 small"></span>
+                                        </fieldset>
+
+                                        <fieldset style="margin: 0; padding: 0; border: none;">
+                                            <input asp-for="Password" 
+                                                   type="password" 
+                                                   placeholder="Your Password" 
+                                                   required 
+                                                   class="login-input" />
+                                            <span asp-validation-for="Password" class="text-danger d-block mt-1 small"></span>
+                                        </fieldset>
+
+                                        <fieldset style="margin-bottom: 30px; text-align: center;">
+                                            <label style="color: #7a7a7a; font-size: 14px; cursor: pointer;">
+                                                <input asp-for="RememberMe" type="checkbox" style="margin-right: 8px; cursor: pointer;" />
+                                                Remember Me?
+                                            </label>
+                                        </fieldset>
+
+                                        <fieldset style="text-align: center;">
+                                            <div class="main-button" style="display: inline-block;">
+                                                <button type="submit" id="form-submit" style="width: 100%; min-width: 200px;">Login</button>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

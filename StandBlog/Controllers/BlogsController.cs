@@ -1,0 +1,117 @@
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using StandBlog.Data;
+using StandBlog.Models.Entities;
+
+namespace StandBlog.Controllers
+{
+    public class BlogsController(
+        ApplicationDbContext context,
+        IValidator<Comment> validator
+    ) : Controller
+    {
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 6)
+        {
+            var blogs = await context.Blogs
+                                     .Include(x => x.Category)
+                                     .Include(x => x.Comments)
+                                     .OrderByDescending(x => x.CreatedOn)
+                                     .Skip((page - 1) * pageSize)
+                                     .Take(pageSize)
+                                     .ToListAsync();
+
+            var totalBlogs = await context.Blogs.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalBlogs / (double)pageSize);
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.TotalBlogs = totalBlogs;
+
+            return View(blogs);
+        }
+
+        public async Task<IActionResult> Detail(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return NotFound();
+            }
+
+            var blog = await context.Blogs
+                                    .Include(x => x.Category)
+                                    .Include(x => x.Comments)
+                                    .Where(x => x.Id == id)
+                                    .SingleOrDefaultAsync();
+
+            if (blog == null)
+            {
+                return NotFound();
+            }
+
+            return View(blog);
+        }
+
+        public async Task<IActionResult> Category(string id)
+        {
+            var blogs = await context.Blogs
+                                     .Include(x => x.Category)
+                                     .Include(x => x.Comments)
+                                     .Where(x => x.CategoryId == id)
+                                     .ToListAsync();
+
+            return View(blogs);
+        }
+
+        public async Task<IActionResult> Tag(string id)
+        {
+            var blogs = await context.BlogTags
+                                     .Include(x => x.Blog)
+                                         .ThenInclude(x => x.Category)
+                                     .Include(x => x.Blog)
+                                         .ThenInclude(x => x.Comments)
+                                     .Where(x => x.TagId == id)
+                                     .ToListAsync();
+
+            return View(blogs);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> CommentAdd(Comment model)
+        {
+            // Double check - kullanıcı giriş yapmış mı?
+            if (User?.Identity?.IsAuthenticated != true)
+            {
+                return Challenge(); // Login sayfasına yönlendir
+            }
+
+            if (model == null || string.IsNullOrEmpty(model.BlogId))
+            {
+                return BadRequest();
+            }
+
+            var result = await validator.ValidateAsync(model);
+
+            if (result.IsValid)
+            {
+                model.Id = Guid.CreateVersion7(TimeProvider.System.GetLocalNow()).ToString();
+                model.CreatedOn = TimeProvider.System.GetLocalNow();
+
+                await context.Comments.AddAsync(model);
+                await context.SaveChangesAsync();
+
+                return RedirectToAction("Detail", new { id = model.BlogId });
+            }
+
+            foreach (var item in result.Errors)
+            {
+                ModelState.AddModelError(item.ErrorCode, item.ErrorMessage);
+            }
+
+            return RedirectToAction("Detail", new { id = model.BlogId });
+        }
+    }
+}

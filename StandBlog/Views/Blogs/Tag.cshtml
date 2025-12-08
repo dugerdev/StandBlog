@@ -1,0 +1,101 @@
+﻿@model ICollection<BlogTag>
+
+<section class="blog-posts grid-system">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="all-blog-posts">
+                    <div class="row">
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var item in Model)
+                            {
+                                @if (item.Blog != null)
+                                {
+                                    <div class="col-lg-6">
+                                        <div class="blog-post">
+                                            <div class="blog-thumb">
+                                                <a asp-controller="Blogs" asp-action="Detail" asp-route-id="@item.Blog.Id">
+                                                    @{
+                                                        string imagePath;
+                                                        if (string.IsNullOrEmpty(item.Blog.ImageUrl))
+                                                        {
+                                                            imagePath = "/assets/images/blog-thumb-01.jpg";
+                                                        }
+                                                        else if (item.Blog.ImageUrl.StartsWith("~/"))
+                                                        {
+                                                            imagePath = item.Blog.ImageUrl.Replace("~/", "/").Replace("blog-post-", "blog-thumb-");
+                                                        }
+                                                        else if (item.Blog.ImageUrl.StartsWith("/"))
+                                                        {
+                                                            imagePath = item.Blog.ImageUrl.Replace("blog-post-", "blog-thumb-");
+                                                        }
+                                                        else
+                                                        {
+                                                            imagePath = "/assets/images/" + item.Blog.ImageUrl.Replace("blog-post-", "blog-thumb-");
+                                                        }
+                                                    }
+                                                    <img src="@imagePath" alt="@item.Blog.Title">
+                                                </a>
+                                            </div>
+                                            <div class="down-content">
+                                                <span>@item.Blog.Category?.Name</span>
+                                                <a asp-controller="Blogs"
+                                                   asp-action="Detail"
+                                                   asp-route-id="@item.Blog.Id">
+                                                    <h4>@item.Blog.Title</h4>
+                                                </a>
+                                                <ul class="post-info">
+                                                    <li>@item.Blog.CreatedOn.ToLocalTime().ToString("MMMM dd, yyyy")</li>
+                                                    <li>@(item.Blog.Comments?.Count ?? 0) Comments</li>
+                                                </ul>
+                                                @{
+                                                    var plainText = System.Text.RegularExpressions.Regex.Replace(item.Blog.Post ?? "", "<.*?>", "");
+                                                    var preview = plainText.Length > 255 ? plainText.Substring(0, 255) + " ..." : plainText;
+                                                }
+                                                <p>@preview</p>
+                                                <div class="post-options">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            @await Component.InvokeAsync("BlogTags", new { id = item.Blog.Id })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <div class="col-lg-12">
+                                <div class="blog-post">
+                                    <div class="down-content text-center" style="padding: 40px;">
+                                        <h4>No blog posts with this tag</h4>
+                                        <p>There are no blog posts available with this tag yet.</p>
+                                        <a asp-controller="Home" asp-action="Index" class="main-button">Back to Home</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        @* Pagination commented out *@
+                        @*<div class="col-lg-12">
+                                <ul class="page-numbers">
+                                    <li><a href="#">1</a></li>
+                                    <li class="active"><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                                </ul>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <partial name="_Sidebar" />
+            </div>
+        </div>
+    </div>
+</section>

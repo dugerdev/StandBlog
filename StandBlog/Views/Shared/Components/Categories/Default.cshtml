@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Category>
+
+<div class="sidebar-item categories">
+    <div class="sidebar-heading">
+        <h2>Categories</h2>
+    </div>
+    <div class="content">
+        <ul>
+            @foreach (Category item in Model)
+            {
+                <li>
+                    <a asp-controller="Blogs"
+                       asp-action="Category"
+                       asp-route-id="@item.Id">
+                        - @item.Name
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+﻿@model List<Blog>
+
+<div class="main-banner header-text">
+    <div class="container-fluid">
+        <div class="owl-banner owl-carousel">
+            @{
+                var bannerImages = new[] { "banner-item-01.jpg", "banner-item-02.jpg", "banner-item-03.jpg" };
+                // Slider'da her zaman 3 görsel göster
+                var blogs = Model ?? new List<Blog>();
+            }
+            @for (int i = 0; i < 3; i++)
+            {
+                var blog = i < blogs.Count ? blogs[i] : null;
+                var bannerImage = bannerImages[i];
+                <div class="item">
+                    <img src="/assets/images/@bannerImage" alt="@(blog?.Title ?? "Blog Post")" style="width: 100%; height: auto;">
+                    @if (blog != null)
+                    {
+                        <div class="item-content">
+                            <div class="main-content">
+                                <div class="meta-category">
+                                    <span>
+                                        @blog.Category?.Name
+                                    </span>
+                                </div>
+                                <a asp-controller="Blogs"
+                                   asp-action="Detail"
+                                   asp-route-id="@blog.Id">
+                                    <h4>
+                                        @blog.Title
+                                    </h4>
+                                </a>
+                                <ul class="post-info">
+                                    <li>
+                                        <a href="#">
+                                            @blog.CreatedOn.ToLocalTime().ToString("MMMM dd, yyyy")
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            @(blog.Comments?.Count ?? 0) Comments
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

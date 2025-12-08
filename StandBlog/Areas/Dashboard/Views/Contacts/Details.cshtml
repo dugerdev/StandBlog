@@ -1,0 +1,74 @@
+﻿@model StandBlog.Models.Entities.Contact
+
+@{
+    ViewData["Title"] = "Contact Details";
+}
+
+<section class="py-5">
+    <div class="container">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">
+                    <i class="bi bi-envelope-open"></i> Contact Details
+                </h4>
+                <a asp-action="Index" class="btn btn-light btn-sm">
+                    <i class="bi bi-arrow-left"></i> Back to List
+                </a>
+            </div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-3">Name</dt>
+                    <dd class="col-sm-9">@Model.Name</dd>
+
+                    <dt class="col-sm-3">Email</dt>
+                    <dd class="col-sm-9">@Model.Email</dd>
+
+                    <dt class="col-sm-3">Subject</dt>
+                    <dd class="col-sm-9">@Model.Subject</dd>
+
+                    <dt class="col-sm-3">Message</dt>
+                    <dd class="col-sm-9">
+                        <div class="p-2 border rounded bg-light">
+                            @Model.Message
+                        </div>
+                    </dd>
+
+                    <dt class="col-sm-3">Is Deleted</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.IsDeleted)
+                        {
+                            <span class="badge bg-danger">Yes</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">No</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-3">Created On</dt>
+                    <dd class="col-sm-9">@Model.CreatedOn.ToString("dd MMM yyyy HH:mm")</dd>
+
+                    @if (Model.ModifiedOn != null)
+                    {
+                        <dt class="col-sm-3">Modified On</dt>
+                        <dd class="col-sm-9">@Model.ModifiedOn?.ToString("dd MMM yyyy HH:mm")</dd>
+                    }
+
+                    @if (Model.DeletedOn != null)
+                    {
+                        <dt class="col-sm-3">Deleted On</dt>
+                        <dd class="col-sm-9">@Model.DeletedOn?.ToString("dd MMM yyyy HH:mm")</dd>
+                    }
+                </dl>
+            </div>
+            <div class="card-footer text-end">
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning me-2">
+                    <i class="bi bi-pencil-square"></i> Edit
+                </a>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-list"></i> Back to List
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,133 @@
+@model StandBlog.Areas.Dashboard.Models.RegisterViewModel
+
+<!-- Banner Starts Here -->
+<div class="heading-page header-text">
+    <section class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-content">
+                        <h4>register</h4>
+                        <h2>join us today!</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Banner Ends Here -->
+
+<section class="blog-posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="all-blog-posts">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-md-8 col-sm-10">
+                            <div class="sidebar-item contact-form login-card">
+                                <div class="sidebar-heading text-center">
+                                    <h2>Register</h2>
+                                </div>
+                                <div class="content">
+                                    @if (TempData["ErrorMessage"] != null)
+                                    {
+                                        <div class="alert alert-danger">
+                                            <i class="fa fa-exclamation-circle"></i> @TempData["ErrorMessage"]
+                                        </div>
+                                    }
+                                    <form asp-controller="Account"
+                                          asp-action="Register"
+                                          method="post">
+                                        @Html.AntiForgeryToken()
+
+                                        <div asp-validation-summary="All" class="text-danger mb-3" style="padding: 10px; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px;"></div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <fieldset style="margin: 0; padding: 0; border: none;">
+                                                    <input asp-for="FirstName" 
+                                                           type="text" 
+                                                           placeholder="First Name" 
+                                                           required 
+                                                           class="login-input" />
+                                                    <span asp-validation-for="FirstName" class="text-danger d-block mt-1 small"></span>
+                                                </fieldset>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <fieldset style="margin: 0; padding: 0; border: none;">
+                                                    <input asp-for="LastName" 
+                                                           type="text" 
+                                                           placeholder="Last Name" 
+                                                           required 
+                                                           class="login-input" />
+                                                    <span asp-validation-for="LastName" class="text-danger d-block mt-1 small"></span>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+
+                                        <fieldset style="margin: 0; padding: 0; border: none;">
+                                            <label style="display: block; color: #7a7a7a; font-size: 13px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase;">
+                                                Date of Birth
+                                            </label>
+                                            <input asp-for="DateOfBirth" 
+                                                   type="date" 
+                                                   required 
+                                                   class="login-input date-input" />
+                                            <span asp-validation-for="DateOfBirth" class="text-danger d-block mt-1 small"></span>
+                                        </fieldset>
+
+                                        <fieldset style="margin: 0; padding: 0; border: none;">
+                                            <input asp-for="Email" 
+                                                   type="email" 
+                                                   placeholder="Your Email" 
+                                                   required 
+                                                   class="login-input" />
+                                            <span asp-validation-for="Email" class="text-danger d-block mt-1 small"></span>
+                                        </fieldset>
+
+                                        <fieldset style="margin: 0; padding: 0; border: none;">
+                                            <input asp-for="Password" 
+                                                   type="password" 
+                                                   placeholder="Password" 
+                                                   required 
+                                                   class="login-input" />
+                                            <span asp-validation-for="Password" class="text-danger d-block mt-1 small"></span>
+                                        </fieldset>
+
+                                        <fieldset style="margin: 0; padding: 0; border: none;">
+                                            <input asp-for="ConfirmPassword" 
+                                                   type="password" 
+                                                   placeholder="Confirm Password" 
+                                                   required 
+                                                   class="login-input" />
+                                            <span asp-validation-for="ConfirmPassword" class="text-danger d-block mt-1 small"></span>
+                                        </fieldset>
+
+                                        <fieldset style="text-align: center; margin-top: 20px;">
+                                            <div class="main-button" style="display: inline-block;">
+                                                <button type="submit" id="form-submit" style="width: 100%; min-width: 200px;">Register</button>
+                                            </div>
+                                        </fieldset>
+
+                                        <div style="text-align: center; margin-top: 20px;">
+                                            <p style="color: #7a7a7a; font-size: 14px;">
+                                                Already have an account? 
+                                                <a asp-controller="Account" asp-action="Login" style="color: #f48840; text-decoration: underline;">Login here</a>
+                                            </p>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
